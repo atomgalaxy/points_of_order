@@ -38,7 +38,7 @@ Relations have many properties. These 8 matter:
 - equivalence
 - order (partial, weak, strong, total)
 
-Let `R` be a relation.
+Let $\Box$ be a relation.
 
 <aside class="notes" data-markdown>
 - "Sets" is how we get around the platonic equality problem - we just have
@@ -49,26 +49,23 @@ Let `R` be a relation.
 
 ## Reflexivity
 
-- $R$ is <dfn>reflexive</dfn> iff an element is always related to itself<br>
-    $\forall x: xRx$
-
+$\Box$ is <dfn>reflexive</dfn> iff an element is always related to itself<br>
+  $\forall x: x\Box x$
 ```{.render_dot}
 digraph G {
   bgcolor=transparent;
-  
   x -> x [style=dotted];
 }
 ```
 
-- $R$ is <dfn>antireflexive</dfn> iff an element is never related to itself<br>
-    $\forall x: \neg xRx$.<br>
-    EoP calls this <dfn>strict</dfn>.
+$\Box$ is <dfn>antireflexive</dfn> iff an element is never related to itself<br>
+  $\forall x: \neg x\Box x$.<br>
+  EoP calls this <dfn>strict</dfn>.
 
 
 ```{.render_dot}
 digraph G {
   bgcolor=transparent;
-  
   x -> x [style=dashed, color=red];
 }
 ```
@@ -82,9 +79,8 @@ reasoning about elements uniformly.
 
 ## Symmetry
 
-- $R$ is <dfn>symmetric</dfn> iff it always goes both ways<br>
-    $\forall x, y: xRy \Rightarrow yRx$
-
+$\Box$ is <dfn>symmetric</dfn> iff it always goes both ways<br>
+  $\forall x, y: x\Boxy \Rightarrow y\Box x$
 ```{.render_dot}
 digraph G {
   bgcolor=transparent;
@@ -97,8 +93,8 @@ digraph G {
 }
 ```
 
-- $R$ is <dfn>antisymmetric</dfn> iff it never goes both ways<br>
-    $\forall x, y: xRy \Rightarrow \neg yRx$
+$\Box$ is <dfn>antisymmetric</dfn> iff it never goes both ways<br>
+  $\forall x, y: x\Boxy \Rightarrow \neg y\Box x$
 
 ```{.render_dot}
 digraph G {
@@ -119,9 +115,8 @@ about element neighbourhoods and allows single-stepping.
 
 ## Transitivity
 
-- $R$ is <dfn>transitive</dfn> iff it allows skipping intermediates:<br>
-    $\forall x, y, z: xRy \land yRz \Rightarrow xRz$
-
+$\Box$ is <dfn>transitive</dfn> iff it allows skipping intermediates:<br>
+  $\forall x, y, z: x\Box y \land y\Box z \Rightarrow x\Box z$
 ```{.render_dot}
 digraph G {
   bgcolor=transparent;
@@ -144,8 +139,33 @@ stepping more than one step, which effectively means any number of steps.
 
 ## Equivalence
 
-- $R$ is an <dfn>equivalencre</dfn> relation iff it is _reflexive_, _symmetric_
-  and _transitive_.
+$\Box$ is an <dfn>equivalence</dfn> relation iff it is _reflexive_,
+_symmetric_ and _transitive_.
+
+
+## Order
+
+$\Box$ is an <dfn>order</dfn> iff it is _antireflexive_, _asymmetric_ and
+_transitive_.
+
+
+## Quiz #1
+
+Reflexive, Antireflexive, Symmetric, Asymmetric, Transitive, Equivalence, Order
+
+Which is this:
+
+```{.render_dot}
+digraph G {
+  x -> x;
+  y -> y;
+  z;
+  x -> y;
+  y -> z;
+  z -> x;
+}
+```
+
 
 
 
