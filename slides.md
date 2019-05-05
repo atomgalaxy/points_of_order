@@ -37,12 +37,15 @@ Because they're better than overviews.
 
 * When and how do I define `<=>`
 * When and how do I use `<=>`
-* Why should I even care?
 * Have you finally solved `float`?
 * can I put random stuff into `std::map` yet?
+* What's with the rewriting rules? (There are rewriting rules?)
 
 
 ## You said these are spoilers
+
+Well... more like a semi-accurate preview so we can get the first pass out of
+the way, and find better questions.
 
 Here are the answers:
 
@@ -52,9 +55,11 @@ Here are the answers:
 When your type has a natural strong$^{\dagger}$ ordering.
 
 <div class='footnotes'>
-$^\dagger$`questions.push("what are std::partial_ordering and std::weak_ordering for then?");`<br/>
+$^\dagger$`questions.push("what are std::partial_ordering and std::weak_ordering for then?");`
 
 If you don't believe me, ask Titus Winters.
+
+`questions.push("what is a natural ordering?");`
 </div>
 
 ## How do I define `<=>`
@@ -70,15 +75,51 @@ std::strong_ordering operator<=>(T const& other) = default;
 
 you don't, directly$^\dagger$. Use normal comparisons.
 
+<div class='footnote'>
+$^\dagger$ unless chaining or you know better.
 
-<small>$^\dagger$unless chaining or you know better.</small>
+`questions.push("chaining?");`
+</div>
 
 <!-- this is super cool because you need less codegen -->
-## 
+## Have you solved `float`?
 
-3. Why should I even care?
-4. Have you finally solved float ordering?
-5. can I put random stuff into maps yet?
+`float` is, and will remain, not Regular. But, we now have a
+`strong_order$^\dagger$` and a `weak_order$^\dagger$` on floats in the language,
+so you can stop using assembly for that, and put floats in maps even if there
+are `NaN`s.
+
+<div class='footnotes'>
+$^\dagger$ `questions.push("std::strong_order and std::weak_order???");`
+</div>
+
+## Can I put random stuff into maps yet?
+
+`questions.pop("std::strong_order and std::weak_order???");`
+
+We have new customization points for types that just want to enable uses that
+need *an* order, and don't care what the order *means*.
+
+
+## What's with the rewriting rules?
+
+There are rewriting rules. Basically:
+
+- `x < y` gets rewritten into `std::is_lt(x <=> y)` (and similar for other
+  operators)
+- `x != y` gets rewritten into `!(x == y)`, and `==` will be autogenned from
+  member `==`s.
+
+
+## Fin
+
+That's all the spoilers. Here are the better questions we've found:
+
+- What is a natural ordering?
+- How do we correctly chain calls to `<=>` when implementing it?
+- What are the new `std::strong_order`, `std::weak_order` and
+  `std::partial_order` customization points for?
+- What exactly are the rewriting rules?
 
 
 # Math Plan
@@ -573,7 +614,7 @@ expect.
 
 ## Partial Order?
 
-Partial order is what you get with `<=>` on ice559 types. It's there because
+Partial order is what you get with `<=>` on `ice559` types. It's there because
 it's currently there, and we couldn't fix it. This keeps `float` as one of the
 non-Regular types.
 
@@ -619,6 +660,10 @@ struct complex {
   }
 };
 ```
+
+# Partial Orders and Lattices
+
+
 
 
 <!-- end floating point -->
