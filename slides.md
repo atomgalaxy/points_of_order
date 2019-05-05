@@ -80,19 +80,6 @@ you don't, directly$^\dagger$. Use normal comparisons.
 4. Have you finally solved float ordering?
 5. can I put random stuff into maps yet?
 
-# Overview
-
-1. The Math <small>(order theory)</small>
-2. The Application <small>(Element of Programming)</small>
-3. C++ 20: The Language & Core <small>(`<=>`, `==` and `std::strong_ordering`)</small>
-4. C++ 20: The Library <small>(`std::strong_order`, `variant`, `vector` & `optional`)</small>
-
-
-# The Big Questions
-
-
-
-
 
 # Math Plan
 
@@ -561,25 +548,112 @@ digraph G {
 
 # C++20: The Library
 
+
+# Floating Point (iec559 types)
+
+## At long last...
+
+`float`, `double` and `long double` are offering the iec559 ordering primitives.
+
+Lawrence Crowl deserves the shout-out for this one; while my own (joint) paper
+brought it home, he started it many years ago.
+
+
+## Strong Order
+
+`std::strong_order(float, float)` will get you an actual strong order on floats.
+`NaN`s compare equal, but `NaN`s with different payload compare different, as do
+the infinities.
+
+## Weak Order
+
+`std::weak_order(float, float)` will get you what you (probably) want - an
+ordering on floats that treats `NaN`s the same, and infinities the way you'd
+expect.
+
+## Partial Order?
+
+Partial order is what you get with `<=>` on ice559 types. It's there because
+it's currently there, and we couldn't fix it. This keeps `float` as one of the
+non-Regular types.
+
+
+# A Type with no Natural Ordering
+
+## Let's take `complex<T>`
+
+Complex numbers don't have a natural ordering, but we still want to put them
+into maps. A lexicographic ordering is fast, and it would make sense for it to
+be shipped with complex. So how do we do that?
+
+Also, let's make complex Regular, because it will be a better example that way.
+
+
+## Should we define `<=>`?
+
+NO! `<=>` is for natural orderings, and complex numbers don't have one.
+
+## So... what?
+
+We just define `==` (to fix Regular) and provide the customization points!
+
+```cpp
+template <typename T>
+struct complex {
+  T real;
+  T imag;
+
+  bool operator==(complex other) {
+    return std::strong_order(real, other.real) == 0 &&
+           std::strong_order(imag, other.imag);
+  }
+
+  // != is obtained by rewriting
+  friend std::strong_ordering strong_order(complex x, complex y) {
+    if (auto r = std::strong_order(x.real, y.real); !std::is_eq(r)) { return r; }
+    return std::strong_order(x.imag, y.imag);
+  }
+  friend std::weak_ordering weak_order(complex x, complex y) {
+    if (auto r = std::weak_order(x.real, y.real); !std::is_eq(r)) { return r; }
+    return std::weak_order(x.imag, y.imag);
+  }
+};
+```
+
+
+<!-- end floating point -->
+
 <!--
 TODO:
-- figure out how to do picture-on-the-side of the slide
-- floating point
-- define strong_order and weak_order for complex
-- define operator <=> for a class that can't forward it (how does the standard
-  synthesize it?)
-- lattices?
-  - lattices have intervals
 - partial orders - which algorithms are they used in
 - key functions are exactly what defines weak orders
-- order the slides so they make sense
-- fallback* functions - at least mention them
-- the rewriting rules: have a few slides describing those
+
 - suggestion: cmp_proxy protocol?
 - `==` is the finest equivalence that makes sense for a type, and *possibly* <=>
   is then the finest ordering that makes sense for a type (since it is strong).
   - types that just have a partial ordering *should* implement the
-    `partial_order` customization point.
+    `partial_order` customization point, and not <=>
 - usefulness: < is a global relation that's usually O(input), not O(set) - that
   is exactly what makes it such an amazing optimization tool.
+
+philosophy:
+
+
+needs internet:
+- define operator <=> for a class that can't forward it (how does the standard
+  synthesize it?)
+- the rewriting rules: have a few slides describing those
+- fallback* functions - at least mention them. Maybe when we're defining the
+  class that is defining its own?
+
+maybe:
+- lattices?
+  - lattices have intervals
+
+next pass:
+- order the slides so they make sense
+
+finalizing:
+- doublecheck is_eq name in complex
+- figure out how to do picture-on-the-side of the slide
 -->
