@@ -3,7 +3,9 @@ title: Points of Order
 pdf: points_of_order.pdf
 slideNumber: true
 controls: true
+theme: black
 ---
+
 \newcommand{\@@}{\cdot}
 \newcommand{\true}{\text{true}}
 \newcommand{\false}{\text{false}}
@@ -33,7 +35,6 @@ Because they're better than overviews.
 
 
 ## But what is this really about?
-
 
 * When and how do I define `<=>`
 * When and how do I use `<=>`
@@ -93,6 +94,7 @@ are `NaN`s.
 $^\dagger$ `questions.push("std::strong_order and std::weak_order???");`
 </div>
 
+
 ## Can I put random stuff into maps yet?
 
 `questions.pop("std::strong_order and std::weak_order???");`
@@ -105,7 +107,8 @@ need *an* order, and don't care what the order *means*.
 
 There are rewriting rules. Basically:
 
-- `x < y` gets rewritten into `std::is_lt(x <=> y)` (and similar for other
+
+- `x < y` gets rewritten into `(x <=> y) < 0` (and similar for other
   operators)
 - `x != y` gets rewritten into `!(x == y)`, and `==` will be autogenned from
   member `==`s.
@@ -201,7 +204,8 @@ $$
 \leq_S(x, y)
 $$
 
-# Overview
+
+# Properties of Relations
 
 Order theory deals with specific kinds of binary _relations_ over sets of
 elements.
@@ -223,7 +227,7 @@ Let $\Omega$ and $\Delta$ be relations.
 </aside>
 
 
-# Reflexivity
+## Reflexivity
 
 $\Omega$ is <dfn>reflexive</dfn> iff an element is always related to itself<br>
   $\forall x: x\Omega x$
@@ -253,7 +257,7 @@ reasoning about elements uniformly.
 </aside>
 
 
-# Symmetry
+## Symmetry
 
 $\Omega$ is <dfn>symmetric</dfn> iff it always goes both ways<br>
   $\forall x, y: x\Omega y \Rightarrow y\Omega x$
@@ -289,7 +293,7 @@ Symmetry is about the relationships of elements between each other. It tells us
 about element neighbourhoods and allows single-stepping.
 </aside>
 
-# Transitivity
+## Transitivity
 
 $\Omega$ is <dfn>transitive</dfn> iff it allows skipping intermediates:<br>
   $\forall x, y, z: x\Omega y \land y\Omega z \Rightarrow x\Omega z$
@@ -313,7 +317,7 @@ stepping more than one step, which effectively means any number of steps.
 </aside>
 
 
-# Equivalence
+## Equivalence
 
 $\Omega$ is an <dfn>equivalence</dfn> relation iff it is _reflexive_,
 _symmetric_ and _transitive_.
@@ -321,13 +325,13 @@ _symmetric_ and _transitive_.
 Equality is an equivalence relation.
 
 
-# Order
+## Order
 
 $\Omega$ is an <dfn>order</dfn> iff it is _antireflexive_, _asymmetric_ and
 _transitive_.
 
 
-# Quiz #1
+## Quiz #1
 
 Reflexive, Antireflexive, Symmetric, Asymmetric, Transitive, Equivalence, Order
 
@@ -344,18 +348,25 @@ digraph G {
 }
 ```
 
-# Equivalence class
+<!-- TODO quizzes. -->
 
-An equivalence relation splits a set into equivalence classes. The equivalence
-relation _induces_ an equality on the set of equivalence classes, but it is not
-an equality over the orignial set.
+# Properties of Equivalence Relations
+
+## Equivalence classes
+
+An equivalence relation splits a set into <dfn>equivalence classes</dfn>.
+
+The equivalence relation
+-  <dfn>induces an equality</dfn> on the set of _equivalence classes_
+-  it is _not_ an equality over the original set (unless it is `==`).
 
 
-# Finer-than
+## Finer-than
 
 Let $\Omega$ and $\Delta$ be equivalences over the same set.
 
-$\Delta$ is <dfn>finer</dfn> than $\Omega$ iff when $\Delta$ deems elements equivalent, so does $\Omega$.
+$\Delta$ is <dfn>finer</dfn> than $\Omega$ iff when $\Delta$ deems elements
+equivalent, so does $\Omega$.
 
 $\forall x, y: x \Delta y \Rightarrow x \Omega y$
 
@@ -375,11 +386,103 @@ That might not be very useful - equality on the real numbers is a very complicat
 </aside>
 
 
-# The Application
-- why
-- algorithms
-- data structures
+# Order Relations
 
+An Order is an antireflexive, asymmetric, transitive relation.
+
+- We omit the transitive closure edges when drawing them.
+
+TODO make examples of order drawings.
+
+
+## Strong Order
+
+Linear order, obeys trichotomy law.
+
+- Induced equivalence classes are same as equality on the type, which means they
+  are singletons.
+- Given a set `S`, the strong order on `S` is the finest order on `S`.
+
+
+## Weak Order
+
+Linear order, obeys trichotomy law.
+- Most often induced with key functions or projections.
+- Induced equivalence classes can be interesting.
+
+
+## Partial Order
+
+Not a linear order. This is the order of DAGs.
+
+
+# Properties of Order Releations
+
+## Finer Order
+
+We say a linear order `<` is <dfn>finer</dfn> than linear order `\prec` iff:
+$\forall x, y \in S: x < y \imp x \preceq y$.
+
+Effectively, if `<` distinguishes between the elements one way, then `\prec`
+must either not distinguish between them, or must say the same thing.
+
+
+## Reversal
+
+If `<` is a linear order, then so is `>`, and they induce the same equivalence
+classes.
+
+
+# Practice Proof 1
+
+## Problem Statement
+
+Let $\lt$ be a **weak** ordering over the set $S$. Prove that 
+$$
+\neg(x \lt y) \wedge \neg(y \lt x)
+$$
+is an equivalence relation.
+
+$\lt$ is a weak ordering, which means that there is some equivalence relation
+$\sim$ on $S$ such that exactly either $x \lt y$ or $y \lt x$ or $x \sim y$.
+
+We will prove that $\Delta$ is $\sim$.
+
+
+## The proof
+
+We are trying to prove that if $x \Delta y \iff x \sim y$.
+
+Trichotomy law: exactly one of $x \lt y$, $y \lt x$, $y \sim x$ is true.<br>
+Grouping the inequality terms gives us:
+$$\neg(x \lt y) \wedge \neg(y \lt x) \iff x \sim y$$
+
+$x \Delta y$<br>
+$\iff \neg(x \lt y) \wedge \neg(y \lt x)$ (rewrite to definition)<br>
+$\iff x \sim y$ (lemma above)
+
+$\Box$
+
+
+# Practice Proof 2
+
+## Problem statement
+
+Let $\subset$ be a **partial** ordering over the set $S$. Prove that 
+$$
+\neg(x \subset y) \wedge \neg(y \subset x)
+$$
+need not be an equivalence relation. Let's call it $\Delta$ again.
+
+
+## The rub
+
+$\neg(x \subset y) \wedge \neg(y \subset x)$
+
+- reflexivity: It's obviously reflexive, since $x \subset x$ is always
+  `false`.$\Box$
+- symmetry: the expression is symmetric. $\Box$
+- transitivity: ... we might find something.
 
 # When should I actually call `<=>` by name?
 
@@ -419,10 +522,101 @@ if (match != end() || *match != needle) {
 }
 ```
 
+# Autogeneration Rules
 
-# Reference
+## `bool operator==(T const&)`
 
-- How do I write my own `<=>` correctly?
+```cpp
+struct X : Base {
+  int a;
+  Y b;
+  Z c;
+
+  // bool operator==(X const&) constexpr const = default
+  bool operator==(X const& y) const {
+    Base const& base = *this;
+    Base const& y_base = y;
+    return base == y_base && a == y.a && b == y.b && c == y.c;
+  }
+
+};
+```
+
+
+## `std::strong_ordering operator<=>(T const&)`
+
+```cpp
+struct X : Base {
+  int a;
+  Y b;
+  Z c;
+
+  // std::strong_ordering operator<=>(X const&) const = default;
+  std::strong_ordering operator<=>(X const& y) const {
+    Base const& base = *this;
+    Base const& y_base = y;
+    if (std::strong_ordering r = base <=> y_base; r != 0) { return r; }
+    if (std::strong_ordering r =    a <=> y.a;    r != 0) { return r; }
+    if (std::strong_ordering r =    b <=> y.b;    r != 0) { return r; }
+    return                          c <=> y.c;
+  }
+};
+```
+
+
+# Rewriting Rules
+
+## Order Switching: `t == u` $\to$ `u == t`
+
+Let `T` and `U` be types, and `t` and `u` values of those types.
+
+```t == u```
+
+The language will try:
+
+* `t.operator==(u)`, `operator==(t, u)`
+* `u.operator==(t)`, `operator==(u, t)`
+
+
+These form an overload set. Same goes for `!=`
+
+
+## `t != u` $\to$ `!(t == u)`
+
+If `operator!=` is not defined for `T`, then rewriting happens:
+
+```cpp
+t != u; // rewrites to !(t == u)
+```
+
+Of course, additional order switching may happen afterwards.
+
+
+## Relational Operators $\to$ `<=>`
+
+If they are defined, nothing changes. If not:
+
+`t < u` rewrites to `(t <=> u) < 0`
+
+More generally, for $@ \in \{<, <=, >=, >\}$ 
+
+`t @ u` rewrites to `(t <=> u) @ 0`
+
+
+## Order Switching: `<=>`
+
+```cpp
+     t  <  u            // rewrites to
+    (t <=> u) < 0       // or
+0 < (u <=> t)
+```
+
+Same for the other operators.
+
+The rules for `<=>` are completely symmetric, regardless of whether it's
+declared as a member or not.
+
+
 
 # Beyond `<=>`
 
@@ -509,61 +703,8 @@ customization point!
 # Shoutouts
 
 - Editors of cppreference.org. You guys make everyone's lives so much easier!
-
-- Arthur O'Dwyer: for giving a 90-minute talk on _An allocator is a handle to a
-  heap_. Much indirect inspiration was had.
-
-
-# Practice 1
-
-## Problem Statement
-
-Let $\lt$ be a **weak** ordering over the set $S$. Prove that 
-$$
-\neg(x \lt y) \wedge \neg(y \lt x)
-$$
-is an equivalence relation.
-
-$\lt$ is a weak ordering, which means that there is some equivalence relation
-$\sim$ on $S$ such that exactly either $x \lt y$ or $y \lt x$ or $x \sim y$.
-
-We will prove that $\Delta$ is $\sim$.
-
-
-## The proof
-
-We are trying to prove that if $x \Delta y \iff x \sim y$.
-
-Trichotomy law: exactly one of $x \lt y$, $y \lt x$, $y \sim x$ is true.<br>
-Grouping the inequality terms gives us:
-$$\neg(x \lt y) \wedge \neg(y \lt x) \iff x \sim y$$
-
-$x \Delta y$<br>
-$\iff \neg(x \lt y) \wedge \neg(y \lt x)$ (rewrite to definition)<br>
-$\iff x \sim y$ (lemma above)
-
-$\Box$
-
-
-# Practice 2
-
-## Problem statement
-
-Let $\subset$ be a **partial** ordering over the set $S$. Prove that 
-$$
-\neg(x \subset y) \wedge \neg(y \subset x)
-$$
-need not be an equivalence relation. Let's call it $\Delta$ again.
-
-
-## The rub
-
-$\neg(x \subset y) \wedge \neg(y \subset x)$
-
-- reflexivity: It's obviously reflexive, since $x \subset x$ is always
-  `false`.$\Box$
-- symmetry: the expression is symmetric. $\Box$
-- transitivity: ... we might find something.
+- Herb Sutter, Jens Maurer, Walter E. Brown, Barry Revzin, Jeff Snyder, David
+  Stone for working on getting ordering correct in the language.
 
 ## Transitivity
 
@@ -583,13 +724,6 @@ digraph G {
 * We have found a counterexample.$\Box$
 
 
-# C++20: The Language & Core
-
-
-
-# C++20: The Library
-
-
 # Floating Point (iec559 types)
 
 ## At long last...
@@ -606,11 +740,13 @@ brought it home, he started it many years ago.
 `NaN`s compare equal, but `NaN`s with different payload compare different, as do
 the infinities.
 
+
 ## Weak Order
 
 `std::weak_order(float, float)` will get you what you (probably) want - an
 ordering on floats that treats `NaN`s the same, and infinities the way you'd
 expect.
+
 
 ## Partial Order?
 
@@ -633,6 +769,7 @@ Also, let's make complex Regular, because it will be a better example that way.
 ## Should we define `<=>`?
 
 NO! `<=>` is for natural orderings, and complex numbers don't have one.
+
 
 ## So... what?
 
@@ -661,10 +798,38 @@ struct complex {
 };
 ```
 
+
+# Adapting `<=>` for use with Map - just use the regular operators.
+
+```cpp
+struct strong_ordering_less {
+  template <typename T>
+  bool operator(T const& x, T const& y) {
+    return std::is_lt(std::strong_order(x, y));
+  }
+};
+
+struct weak_ordering_less {
+  template <typename T>
+  bool operator(T const& x, T const& y) {
+    return std::is_lt(std::weak_order(x, y));
+  }
+};
+
+
+std::map<T, strong_ordering_less>
+```
+
+
 # Partial Orders and Lattices
 
 
 
+
+# Bibliography:
+- order switching: https://htmlpreview.github.io/?https://github.com/BRevzin/cpp_proposals/blob/master/118x_spaceship/d1630r0.html
+
+-
 
 <!-- end floating point -->
 
@@ -683,6 +848,17 @@ TODO:
 
 philosophy:
 
+- what about orders that are "stronger than strong"
+- an ordering induces equivalence classes
+- every type that has a strong ordering has at least two - the opposite way as
+  well.
+- strong_ordering is a signal that == induces the same equivalence classes
+- an ordering finer than strong_ordering is still a weak_ordering!
+- interplay with std::hash?
+
+- How would I use an ordering derived from std::strong_order in map?
+ 
+
 
 needs internet:
 - define operator <=> for a class that can't forward it (how does the standard
@@ -694,6 +870,7 @@ needs internet:
 maybe:
 - lattices?
   - lattices have intervals
+- ordering for pointers.
 
 next pass:
 - order the slides so they make sense
@@ -701,4 +878,6 @@ next pass:
 finalizing:
 - doublecheck is_eq name in complex
 - figure out how to do picture-on-the-side of the slide
+
+
 -->
