@@ -52,12 +52,14 @@ This today will be a joint math and C++ talk.
 
 ## Thank You, Collaborators!
 
-- **Herb Sutter**, **Jens Maurer** and **Walter E. Brown** for writing the original P0515,
-  and oh-so-much of their time and patience
+- **Herb Sutter**, **Jens Maurer** and **Walter E. Brown** for writing the
+  original P0515, and oh-so-much of their time and patience
 - **Tony van Eerd** and **Lisa Lippincott**, for their input around what
   "strong" means, and **Arthur O'Dwyer** for further detailed discussion
 - **Agustín Bergé**, **Tim Song** and **Richard Smith** for further deep
   discussions about implementation and specification
+- And **David Stone** for his extensive work in getting the library and
+  `operator==` right.
 
 ## 💖💖💖
 
@@ -407,9 +409,7 @@ These form an overload set. Same goes for `!=`
 
 If `operator!=` is not defined for `T`, then rewriting happens:
 
-```cpp
-t != u; // rewrites to !(t == u)
-```
+`t != u;` rewrites to !(t == u)
 
 Of course, additional order switching may happen afterwards.
 
@@ -433,51 +433,164 @@ Order should be easy.
 
 # Order Relations
 
-An Order is an _antireflexive_, _asymmetric_, _transitive_ relation.
+## Definition
+
+An <dfn>Order</dfn> is an _antireflexive_, _asymmetric_, _transitive_ relation.
+
+Let's break this down.
+
+Let $\Omega$ and $\Delta$ be relations.
 
 
-When drawing orders, we omit the edges for the t
-- We omit the transitive closure edges when drawing them.
+## Reflexivity and Antireflexivity
 
-TODO make examples of order drawings.
+$\Omega$ is <dfn>reflexive</dfn> iff an element is always related to itself<br>
+  $\forall x: x\Omega x$
+```{.render_dot}
+digraph G {
+  x -> x [style=dotted];
+}
+```
+
+$\Omega$ is <dfn>antireflexive</dfn> iff an element is never related to itself<br>
+  $\forall x: \neg x\Omega x$.<br>
+  EoP calls this <dfn>strict</dfn>.
 
 
-## Strong Order
-
-Linear order, obeys trichotomy law.
-
-- Induced equivalence classes are same as equality on the type, which means they
-  are singletons.
-- Given a set `S`, the strong order on `S` is the finest order on `S`.
+```{.render_dot}
+digraph G {
+  x -> x [style=dashed, color=red];
+}
+```
 
 
-## Weak Order
+<aside class="notes" data-markdown>
+Reflexivity is about the relationships of elements to themselves. It allows
+reasoning about elements uniformly.
+</aside>
 
-Linear order, obeys trichotomy law.
-- Most often induced with key functions or projections.
-- Induced equivalence classes can be interesting.
+
+## Symmetry
+
+$\Omega$ is <dfn>symmetric</dfn> iff it always goes both ways<br>
+  $\forall x, y: x\Omega y \Rightarrow y\Omega x$
+```{.render_dot}
+digraph G {
+    subgraph sg {
+    rank=same;
+     
+    x -> y [style=solid];
+    y -> x [style=dotted];
+  }
+}
+```
+
+$\Omega$ is <dfn>asymmetric</dfn> iff it never goes both ways<br>
+  $\forall x, y: x\Omega y \Rightarrow \neg y\Omega x$
+
+```{.render_dot}
+digraph G {
+  subgraph sg {
+  rank=same;
+  
+  x -> y [style=solid];
+  y -> x [style=dashed, color=red];
+  }
+}
+```
+
+<aside class="notes" data-markdown>
+Symmetry is about the relationships of elements between each other. It tells us
+about element neighbourhoods and allows single-stepping.
+</aside>
+
+
+## Transitivity
+
+$\Omega$ is <dfn>transitive</dfn> iff it allows skipping intermediates:<br>
+  $\forall x, y, z: x\Omega y \land y\Omega z \Rightarrow x\Omega z$
+```{.render_dot}
+digraph G {
+    subgraph sg {
+    rank=same;
+     
+    x -> y [style=solid];
+    y -> z [style=solid];
+    x -> z [style=dotted];
+  }
+}
+```
+
+Transitivity allows extension of local to global reasoning through induction.
+
+<aside class="notes" data-markdown>
+Transitivity is what allows the extension to global reasoning. It's what allows
+stepping more than one step, which effectively means any number of steps.
+</aside>
 
 
 ## Partial Order
 
-Not a linear order. This is the order of DAGs.
+Antireflexive, Assymetric, Transitive
+
+```{.render_dot}
+digraph G {
+    subgraph sg {
+
+    a -> b -> d;
+    a -> c -> d;
+  }
+}
+```
+
+This is the order of directed acyclic graphs.<br>
+$b$ and $c$ are not ordered with respect to each other.
+
+<aside class="notes" data-markdown>
+Note: for transitive relations, we don't draw the transitive closure arrows.
+</aside>
 
 
-# Properties of Order Releations
+## Linear (or Total) Order
 
-## Finer Order
+Linear orders obey the trichotomy law:
 
-We say a linear order `<` is <dfn>finer</dfn> than linear order `\prec` iff:
-$\forall x, y \in S: x < y \imp x \preceq y$.
+An order is <dfn>linear</dfn> iff there exists an equivalence $\sim$, such that
+exactly one of the statements is true for any given pair $(x, y)$:
 
-Effectively, if `<` distinguishes between the elements one way, then `\prec`
-must either not distinguish between them, or must say the same thing.
+- $x < y$
+- $x > y$
+- $x \sim y$
 
 
-## Reversal
+## Example:
 
-If `<` is a linear order, then so is `>`, and they induce the same equivalence
-classes.
+```{.render_dot}
+digraph G {
+    subgraph sg {
+
+    subgraph cluster_1 { a; } 
+    subgraph cluster_2 { b; c; }
+    subgraph cluster_3 { d }
+
+    a -> b -> d;
+    a -> c -> d;
+
+  }
+}
+```
+Graph of $\sim$ and $\prec$.
+
+$^\prec/_\sim$ is a linear order on $S/_\sim$.
+
+
+## Strong Order
+
+An order is <dfn>strong</dfn> if its equivalence ($\sim$) is the equality ($=$)
+on the set.
+
+An order is <dfn>weak</dfn> if this need not be true<br>
+(every strong order is a weak order).
 
 
 # Practice Proof 1
@@ -486,9 +599,11 @@ classes.
 
 Let $\lt$ be a **weak** ordering over the set $S$. Prove that 
 $$
-\neg(x \lt y) \wedge \neg(y \lt x)
+\Delta := \neg(x \lt y) \wedge \neg(y \lt x)
 $$
 is an equivalence relation.
+
+## The proof: idea
 
 $\lt$ is a weak ordering, which means that there is some equivalence relation
 $\sim$ on $S$ such that exactly either $x \lt y$ or $y \lt x$ or $x \sim y$.
@@ -496,7 +611,7 @@ $\sim$ on $S$ such that exactly either $x \lt y$ or $y \lt x$ or $x \sim y$.
 We will prove that $\Delta$ is $\sim$.
 
 
-## The proof
+## The proof (2)
 
 We are trying to prove that if $x \Delta y \iff x \sim y$.
 
@@ -551,10 +666,53 @@ digraph G {
 * However, $a \prec c$, which means $\neg (a \Delta c)$.
 * We have found a counterexample.$\Box$
 
+# Takeaways:
+
+## 
+
+Every linear order has an associated equivalence relation $\sim$.
+
+This equivalence is $x \sim y := \neg(x < y) \wedge \neg(x > y)$.
+
+## 
+
+This equivalence induces equivalence classes.
+
+By extension, we can say that a linear order induces equivalence classes.
+
+##
+
+If the equivalence is the equality, the order is strong.
+
+##
+
+Partial orders do not induce equivalence classes!
+
+
+# Properties of Order Releations
+
+## Finer Order
+
+We say a linear order `<` is <dfn>finer</dfn> than linear order `\prec` iff:
+$\forall x, y \in S: x < y \imp x \preceq y$.
+
+Effectively, if `<` distinguishes between the elements one way, then `\prec`
+must either not distinguish between them, or must say the same thing.
+
+
+## Reversal
+
+If `<` is a linear order, then so is `>`, and they induce the same equivalence
+classes.
+
+If there is a weak order, there are always at least two orders!
+
+
+## C++:
 
 # When should I actually call `<=>` by name?
 
-Binary search of all kinds. End.
+Binary search of all kinds, or if implementing `<=>`.
 
 ```cpp
 iterator map<T>::find(T const& needle) {
@@ -976,124 +1134,6 @@ $$
 $$
 
 
-# Properties of Relations
-
-Order theory deals with specific kinds of binary _relations_ over sets of
-elements.
-
-Relations have many properties. These 7 matter for today:
-
-- reflexivity & antireflexivity
-- symmetry, asymmetry (or strictness)
-- transitivity
-- equivalence
-- order (partial, weak, strong, total)
-
-Let $\Omega$ and $\Delta$ be relations.
-
-<aside class="notes" data-markdown>
-- "Sets" is how we get around the platonic equality problem - we just have
-  elements, and elements are always only equal to themselves, because sets come
-  with equality built in.
-</aside>
-
-
-## Reflexivity
-
-$\Omega$ is <dfn>reflexive</dfn> iff an element is always related to itself<br>
-  $\forall x: x\Omega x$
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-  x -> x [style=dotted];
-}
-```
-
-$\Omega$ is <dfn>antireflexive</dfn> iff an element is never related to itself<br>
-  $\forall x: \neg x\Omega x$.<br>
-  EoP calls this <dfn>strict</dfn>.
-
-
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-  x -> x [style=dashed, color=red];
-}
-```
-
-
-<aside class="notes" data-markdown>
-Reflexivity is about the relationships of elements to themselves. It allows
-reasoning about elements uniformly.
-</aside>
-
-
-## Symmetry
-
-$\Omega$ is <dfn>symmetric</dfn> iff it always goes both ways<br>
-  $\forall x, y: x\Omega y \Rightarrow y\Omega x$
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-    subgraph sg {
-    rank=same;
-     
-    x -> y [style=solid];
-    y -> x [style=dotted];
-  }
-}
-```
-
-$\Omega$ is <dfn>antisymmetric</dfn> iff it never goes both ways<br>
-  $\forall x, y: x\Omega y \Rightarrow \neg y\Omega x$
-
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-  subgraph sg {
-  rank=same;
-  
-  x -> y [style=solid];
-  y -> x [style=dashed, color=red];
-  }
-}
-```
-
-<aside class="notes" data-markdown>
-Symmetry is about the relationships of elements between each other. It tells us
-about element neighbourhoods and allows single-stepping.
-</aside>
-
-## Transitivity
-
-$\Omega$ is <dfn>transitive</dfn> iff it allows skipping intermediates:<br>
-  $\forall x, y, z: x\Omega y \land y\Omega z \Rightarrow x\Omega z$
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-    subgraph sg {
-    rank=same;
-     
-    x -> y [style=solid];
-    y -> z [style=solid];
-    x -> z [style=dotted];
-  }
-}
-```
-
-
-<aside class="notes" data-markdown>
-Transitivity is what allows the extension to global reasoning. It's what allows
-stepping more than one step, which effectively means any number of steps.
-</aside>
-
-
-## Equivalence
-
-$\Omega$ is an <dfn>equivalence</dfn> relation iff it is _reflexive_,
-_symmetric_ and _transitive_.
-
-Equality is an equivalence relation.
 
 
 ## Order
