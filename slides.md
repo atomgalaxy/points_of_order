@@ -14,6 +14,10 @@ theme: black
 \newcommand{\iff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
 
 
 # Points of Order {bg=#fff}
@@ -241,6 +245,7 @@ The equivalence over entities ~~induces~~ _defines_ ~~an~~ the equality on the t
 - Datum: 32 consecutive bits
 - Induced equality: bitwise comparison
 
+<!-- _ -->
 
 ## Example: null-terminated case-insensitive string (ascii)
 
@@ -653,9 +658,6 @@ Consider this graph of the relation $\prec$.
 
 ```{.render_dot}
 digraph G {
-    bgcolor=transparent;
-    color=white;
-
     a -> c [style=solid];
     b;
 }
@@ -665,6 +667,27 @@ digraph G {
 * If $\Delta$ were transitive, it would follow $a \Delta c$.
 * However, $a \prec c$, which means $\neg (a \Delta c)$.
 * We have found a counterexample.$\Box$
+
+
+# Natural Order
+
+## Definition
+
+Every value type is defined through its equality, which could be called a natural equivalence on the type.
+
+Some types also have a <dfn>natural order</dfn>.
+
+The natural order on a type induces the same equivalence classes as its
+equality, and is therefore always a strong order.
+
+
+## Examples
+- Points in a DAG have a natural partial order
+- $\N$ have a natural order that follows from their inductive definition
+- $\Z$'s follows from $\N$'s for magnitude and a rule for the sign.
+- $\R$ have an order they inherit from $\Q$
+- $\C$ ... do not have a natural order. They are inherently two-dimensional.
+
 
 # Takeaways:
 
@@ -688,27 +711,135 @@ If the equivalence is the equality, the order is strong.
 
 Partial orders do not induce equivalence classes!
 
+##
+
+Some types have a natural strong order.
+
 
 # Properties of Order Releations
 
 ## Finer Order
 
-We say a linear order `<` is <dfn>finer</dfn> than linear order `\prec` iff:
+We say a linear order $<$ is <dfn>finer</dfn> than linear order $\prec$ iff:
 $\forall x, y \in S: x < y \imp x \preceq y$.
 
-Effectively, if `<` distinguishes between the elements one way, then `\prec`
+Effectively, if $<$ distinguishes between the elements one way, then $\prec$
 must either not distinguish between them, or must say the same thing.
 
 
 ## Reversal
 
-If `<` is a linear order, then so is `>`, and they induce the same equivalence
+If $<$ is a linear order, then so is $>$, and they induce the same equivalence
 classes.
 
 If there is a weak order, there are always at least two orders!
 
 
-## C++:
+# C++: `std::strong_ordering`
+
+## Definition
+
+```cpp
+struct strong_ordering {
+    static const strong_ordering::less;
+    static const strong_ordering::equal;
+    static const strong_ordering::greater;
+    static const strong_ordering::equivalent; // <- because is-a weak order
+    /* comparison operators, conversions, etc */
+};
+```
+
+## Intended Usage
+
+Let's call a function that returns one of the above types an <dfn>order</dfn>,
+since it's not a predicate.
+
+Say `order(x, y)` is a linear order.
+
+If `order(x, y) == 0` iff `x == y`, then `order` should return
+`std::strong_ordering`.
+
+In other words, `std::strong_ordering` is a semantic guarantee that
+`order(x, y)` induces the same equivalence classes as `==`.
+
+
+## Examples
+
+`strcmp(char const*, char const*)` should be returning `std::strong_ordering`,
+or a type derived from it. It is a strong order wirth respect to
+`strcmp(x, y) == 0`, which is its equality.
+
+The lexicographical order on `std::complex<float, float>` (if we disallow NaN and infinities) is a strong order, but not a natural order.
+
+There are infinitely many strong orders on the complex numbers: can you think
+of them?
+
+
+# C++: `std::weak_ordering`
+
+##  Definition
+
+```cpp
+struct weak_ordering {
+    static const weak_ordering::less;
+    static const weak_ordering::equivalent;
+    static const weak_ordering::greater;
+    /* notice - no ::equal */
+    /* comparison operators, conversions, etc */
+};
+```
+
+## Intended Usage
+
+Every order that induces _different_ equivalence classes than the equality on the
+type is a weak order.
+
+Or: if `order(x, y) == 0` need not be iff `x == y`, it's a weak order.
+
+This is true even if the `order(x, y)` is _finer_ than the natural order on the
+type.
+
+
+## Examples
+
+`stricmp(char const*, char const*)` is a weak order on null-terminated strings
+with `strcmp`-induced equality.
+
+`strcmp(char const*, char const*)` is a **weak** order on null-terminated
+case-insensitive strings with `stricmp`-induced equality.
+
+
+# `std::partial_ordering`
+
+## Definition
+
+```cpp
+struct partial_ordering {
+    static const partial_ordering::less;
+    static const partial_ordering::equivalent;
+    static const partial_ordering::greater;
+    static const partial_ordering::unordered;
+    /* comparison operators, conversions, etc */
+};
+```
+
+## On Partial Orders
+
+- They don't induce equivalence classes - no choice between strong and weak.
+
+That said, partial orders should always be able to treat `==` as an element
+disambiguator, because of where they are used (graphs, scheduling, etc).
+
+Making a weak order that is finer (consistent with) a partial order is called
+<dfn>linearization</dfn>, or sometimes scheduling.
+
+
+## Examples
+
+- "ancestor" and "predecessor" in a DAG
+- teams in a league that did not compete
+- instructions in a basic block in SSA
+
 
 # When should I actually call `<=>` by name?
 
@@ -749,7 +880,6 @@ if (match != end() || *match != needle) {
 ```
 
 
-
 ## `std::strong_ordering operator<=>(T const&)`
 
 ```cpp
@@ -769,9 +899,6 @@ struct X : Base {
   }
 };
 ```
-
-
-
 
 ## Relational Operators $\to$ `<=>`
 
