@@ -1,6 +1,6 @@
 ---
 title: Points of Order
-pdf: points_of_order.pdf
+# pdf: points_of_order.pdf
 slideNumber: true
 controls: true
 theme: black
@@ -188,6 +188,7 @@ digraph {
 $(X, Y\in P: X =_P Y) \iff (\exists x \in X, y \in Y: x \sim y)$<br>
 It's true for any element.
 
+<!-- _asdf -->
 
 ## The Punchline
 
@@ -202,7 +203,8 @@ equality over the set of its equivalence classes.
 
 ## Bonus:
 
-Note the cheap testing - checking for _equality_ of equivalence classes is the same as checking for _equivalence_ of any two representatives.
+Note the cheap testing - checking for _equality_ of equivalence classes is the
+same as checking for _equivalence_ of any two representatives.
 
 This is far faster than checking for set equality, which can be $O(n^2)$.
 
@@ -217,7 +219,8 @@ From Elements of Programming:
 
 - A **value type** is a correspondence between a _species_ and a `datum`.
 - **datum**: a finite sequence of $1$s and $0$s.
-- **Species**: describes a set of common properties of _essentially equivalent_ entities.
+- **Species**: describes a set of common properties of _essentially equivalent_
+  entities.
 
 Oh well, that got us far :).
 
@@ -235,17 +238,18 @@ This equivalence over _entities_ induces an _equality_ on the type.
 
 ## Let me Repeat
 
-The equivalence over entities ~~induces~~ _defines_ ~~an~~ the equality on the type.
+The equivalence over entities ~~induces~~ _defines_ ~~an~~ the equality on the
+type.
 
 
 ## Example: `int32_t`
 
 - Species: subset of $\Z$.
-- Equivalence: $=_{\Z}$
+- Equivalence: $=_{\Z}$ <!-- _asdf -->
 - Datum: 32 consecutive bits
 - Induced equality: bitwise comparison
 
-<!-- _ -->
+
 
 ## Example: null-terminated case-insensitive string (ascii)
 
@@ -261,11 +265,12 @@ Yes, it's an **equality**.
 
 - Species: strings of abstract characters.
 - Equivalence: character-by-character comparison.
-- Datum: an arbitrarily long sequence of bytes, with length, location and capacity
-  information, possibly disjoint.
+- Datum: an arbitrarily long sequence of bytes, with length, location and
+  capacity information, possibly disjoint.
 - Induced equality: `std::string operator==`
 
-Note that we ignore `capacity()`. This is *obvious* from the _species_ that `std::string` is related to.
+Note that we ignore `capacity()`. This is *obvious* from the _species_ that
+`std::string` is related to.
 
 
 # Equivalence: _finer_ and _coarser_
@@ -306,11 +311,11 @@ Which ones are finer than others?
 
 ## Answers:
 
-1. `std::string::operator==` - finest
-2. `strcmp(x, y)` - ignores everything after a `\0`
-3. `stricmp(x, y)` - also ignores case
-4. `x.size() == y.size()` - coarser than 5 and 1, independent of 2 and 3
-5. `x == y && x.capacity() == y.capacity()` - finest
+1. `x == y` :: baseline
+2. `strcmp(x, y)` :: ignores everything after a `\0`
+3. `stricmp(x, y)` :: also ignores case
+4. `x.size() == y.size()` :: coarser than 5 and 1, independent of 2 and 3
+5. `x == y && x.capacity() == y.capacity()` :: finest
 
 
 ## So what about 5?
@@ -359,7 +364,11 @@ Equality is the finest equivalence on the type
 
 ## 
 
-There is no such thing as weak equality
+There is no such thing as weak equality.
+
+<div class='footnotes'>
+Ask Tony van Eerd if you don't believe your own brain.
+</div>
 
 ## 
 
@@ -586,7 +595,7 @@ digraph G {
 ```
 Graph of $\sim$ and $\prec$.
 
-$^\prec/_\sim$ is a linear order on $S/_\sim$.
+$^\prec/_\sim$<!-- _a--> is a linear order on $S/_\sim$.<!-- _a-->
 
 
 ## Strong Order
@@ -716,7 +725,7 @@ Partial orders do not induce equivalence classes!
 Some types have a natural strong order.
 
 
-# Properties of Order Releations
+# Properties of Order Relations
 
 ## Finer Order
 
@@ -769,7 +778,8 @@ In other words, `std::strong_ordering` is a semantic guarantee that
 or a type derived from it. It is a strong order wirth respect to
 `strcmp(x, y) == 0`, which is its equality.
 
-The lexicographical order on `std::complex<float, float>` (if we disallow NaN and infinities) is a strong order, but not a natural order.
+The lexicographical order on `std::complex<float, float>` (if we disallow NaN
+and infinities) is a strong order, but not a natural order.
 
 There are infinitely many strong orders on the complex numbers: can you think
 of them?
@@ -841,29 +851,31 @@ Making a weak order that is finer (consistent with) a partial order is called
 - instructions in a basic block in SSA
 
 
-# When should I actually call `<=>` by name?
+# C++: `<=>` semantics
 
-Binary search of all kinds, or if implementing `<=>`.
+## Three-way comparison operator
 
-```cpp
-iterator map<T>::find(T const& needle) {
-  node* current = _head;
-  while (current != nullptr) {
-    std::weak_ordering const result = current->value <=> needle;
-    switch (result) {
-      case ::std::weak_ordering::equivalent:
-        return {current};
-      case ::std::weak_ordering::less:
-        current = current->left;  break;
-      case ::std::weak_ordering::greater;
-        current = current->right; break;
-  }
-  return end();
-}
-```
+An operator that lets us _consicely_ encode the _natural order_ on the type.
 
 
-# `==` is an optimization of `<=>`
+## Obvious corrolary
+
+`<=>` should always return `std::strong_ordering`, if `<=>` exists.
+
+This follows directly from representing natural orders.
+
+
+## If you don't follow this advice?
+
+`(x < y) + (x == y) + (x > y)` need not be `1`. You will break poor,
+unsuspecting code that looks correct.
+
+Madness.
+
+
+## Further: `==` is an optimization of `<=>`
+
+Repeat: `<=>` should always return `std::strong_ordering`, if `<=>` exists.
 
 The first thing you do after calling `lower_bound` is compare the return value.
 
@@ -880,7 +892,9 @@ if (match != end() || *match != needle) {
 ```
 
 
-## `std::strong_ordering operator<=>(T const&)`
+# C++: `<=>` behaviour
+
+## Autogenerated `<=>`
 
 ```cpp
 struct X : Base {
@@ -899,6 +913,15 @@ struct X : Base {
   }
 };
 ```
+
+## Autogeneration properties
+
+If you say `auto`, you get `std::common_comparison_category_t<...>` etc. It's
+insane anyway - `<=>` should not return `std::weak_ordering`.
+
+Just specity `std::strong_order` and you will get compile-time errors for insane
+code.
+
 
 ## Relational Operators $\to$ `<=>`
 
@@ -925,33 +948,62 @@ The rules for `<=>` are completely symmetric, regardless of whether it's
 declared as a member or not.
 
 
+# C++: `<=>` Usage
+
+## When else should I actually call `<=>` by name?
+
+We saw an example of using `<=>` directly for implementing `<=>`. Where else?
+Binary search of all kinds:
+
+```cpp
+iterator map<T>::find(T const& needle) {
+  node* current = _head;
+  while (current != nullptr) {
+    std::weak_ordering const result = current->value <=> needle;
+    switch (result) {
+      case ::std::weak_ordering::equivalent:
+        return {current};
+      case ::std::weak_ordering::less:
+        current = current->left;  break;
+      case ::std::weak_ordering::greater;
+        current = current->right; break;
+  }
+  return end();
+}
+```
+
+## Don't actually call `<=>`
+
+Just call the regular comparison operators.
+
+- They will do the right thing
+- Less codegen, because only one function.
+
 
 # Beyond `<=>`
 
-# The purpose of `std::weak_ordering`
+That's really all that's to know about `<=>`.
 
-## When?
-
-A _total ordering_ is a _weak ordering_ when its equivalence is different from
-equality _on the type_.
-
-Let this sink in.
-
-`compare(x, y) == 0` is different from `x == y`.
-
-<div class='footnotes'>
-`questions.push("But what about case_insensitive_string?!!");`
-</div>
+The rest of the complexity is elsewhere.
 
 
-## The Great Reveal: it's for 3-way comparators
+# Why `std::weak_ordering`
 
-`std::weak_ordering case_insensitive_compare(std::string const& x, std::string const& y)`.
+## When do we use it
 
-When your comparator is not compatible with the `==` on the type, use a
-`std::weak_ordering`.
+Almost all named comparators should return `std::weak_ordering`.
 
-It's a bit niche.
+Most named comparators are of the form:
+
+```cpp
+auto make_compare(auto projection) {
+  return [projection](auto const& x, auto const& y) -> std::weak_ordering {
+    return projection(x) <=> projection(y);
+  }
+}
+```
+
+(`<=>` on the codomain of `projection` is probably a strong order)
 
 
 # So what about `case_insensitive_string`?
@@ -987,12 +1039,17 @@ Anything else is insanity.
 
 It's to express partial orders, d0h!
 
-Don't make `operator<=>` return `std::partial_order`.
+Don't make `operator<=>` return `std::partial_order`. Ever. I will find you, and
+I will ... not accept your pull request.
 
 
 # Natural Orderings
 
+Let me repeat again, so that it sinks in for real:
+
 `<=>` expresses natural strong orderings.
+
+If it ain't natural and strong, it doesn't deserve the name.
 
 
 # Any-order for your type
@@ -1005,6 +1062,57 @@ customization point!
 
 (`std::strong_order` will dispatch to it, or `<=>` if it returns
 `std::strong_ordering`)
+
+
+# Not A Natural
+
+## Let's take `complex<T>`
+
+Complex numbers don't have a natural ordering, but we still want to put them
+into maps. A lexicographic ordering is fast, and it would make sense for it to
+be shipped with complex. So how do we do that?
+
+Also, let's make complex Regular, because it will be a better example that way.
+
+
+## Should we define `<=>`?
+
+## Should we define `<=>`?
+
+NO! `<=>` is for natural orderings, and complex numbers don't have one.
+
+
+## Example (cont.):
+
+Defining for complex:
+
+```cpp
+struct my_complex {
+  float real;
+  float imag;
+
+  bool operator==(complex other) {
+    return std::strong_order(real, other.real) == 0 &&
+           std::strong_order(imag, other.imag);
+  }
+
+  friend std::strong_ordering strong_order(my_complex const& x,
+                                           my_complex const& y) {
+    if (auto r = std::strong_order(x.real, y.real); r != 0) { return r; }
+    return       std::strong_order(x.imag, y.imag);
+  }
+  friend std::weak_ordering weak_order(my_complex const& x,
+                                           my_complex const& y) {
+    if (auto r = std::weak_order(x.real, y.real); r != 0) { return r; }
+    return       std::weak_order(x.imag, y.imag);
+  }
+  friend std::partial_ordering partial_order(my_complex const& x,
+                                             my_complex const& y) {
+    if (auto r = x.real <=> y.real; r != 0) { return r; }
+    return       x.imag <=> y.imag;
+  }
+};
+```
 
 
 # Floating Point (iec559 types)
@@ -1038,50 +1146,6 @@ it's currently there, and we couldn't fix it. This keeps `float` as one of the
 non-Regular types.
 
 
-# A Type with no Natural Ordering
-
-## Let's take `complex<T>`
-
-Complex numbers don't have a natural ordering, but we still want to put them
-into maps. A lexicographic ordering is fast, and it would make sense for it to
-be shipped with complex. So how do we do that?
-
-Also, let's make complex Regular, because it will be a better example that way.
-
-
-## Should we define `<=>`?
-
-NO! `<=>` is for natural orderings, and complex numbers don't have one.
-
-
-## So... what?
-
-We just define `==` (to fix Regular) and provide the customization points!
-
-```cpp
-template <typename T>
-struct complex {
-  T real;
-  T imag;
-
-  bool operator==(complex other) {
-    return std::strong_order(real, other.real) == 0 &&
-           std::strong_order(imag, other.imag);
-  }
-
-  // != is obtained by rewriting
-  friend std::strong_ordering strong_order(complex x, complex y) {
-    if (auto r = std::strong_order(x.real, y.real); !std::is_eq(r)) { return r; }
-    return std::strong_order(x.imag, y.imag);
-  }
-  friend std::weak_ordering weak_order(complex x, complex y) {
-    if (auto r = std::weak_order(x.real, y.real); !std::is_eq(r)) { return r; }
-    return std::weak_order(x.imag, y.imag);
-  }
-};
-```
-
-
 # Adapting `<=>` for use with Map - just use the regular operators.
 
 ```cpp
@@ -1103,278 +1167,14 @@ struct weak_ordering_less {
 std::map<T, strong_ordering_less>
 ```
 
-<!--
-## But what is this really about?
+# Fin
 
-* When and how do I define `<=>`
-* When and how do I use `<=>`
-* Have you finally solved `float`?
-* can I put random stuff into `std::map` yet?
-* What's with the rewriting rules? (There are rewriting rules?)
+Thanks for listening!
 
+- Do define order
+- Be aware of what your _species_ is.
 
-## You said these are spoilers
+Have fun and optimize!
 
-Well... more like a semi-accurate preview so we can get the first pass out of
-the way, and find better questions.
-
-Here are the answers:
-
-
-## When do I define `<=>`
-
-When your type has a natural strong$^{\dagger}$ ordering.
-
-<div class='footnotes'>
-$^\dagger$`questions.push("what are std::partial_ordering and std::weak_ordering for then?");`
-
-If you don't believe me, ask Titus Winters.
-
-`questions.push("what is a natural ordering?");`
-</div>
-
-## How do I define `<=>`
-
-```
-std::strong_ordering operator<=>(T const& other) = default;
-```
-
-`<=>` replaces `<, <=, >=, >` and sometimes `==` and `!=`.
-
-
-## When do I use `<=>`
-
-you don't, directly$^\dagger$. Use normal comparisons.
-
-<div class='footnote'>
-$^\dagger$ unless chaining or you know better.
-
-`questions.push("chaining?");`
-</div>
-
-<!-- this is super cool because you need less codegen -->
-## Have you solved `float`?
-
-Yeah.
-
-## Can I put random stuff into maps yet?
-
-`questions.pop("std::strong_order and std::weak_order???");`
-
-We have new customization points for types that just want to enable uses that
-need *an* order, and don't care what the order *means*.
-
-
-## What's with the rewriting rules?
-
-There are rewriting rules. Basically:
-
-
-- `x < y` gets rewritten into `(x <=> y) < 0` (and similar for other
-  operators)
-- `x != y` gets rewritten into `!(x == y)`, and `==` will be autogenned from
-  member `==`s.
-
-
-## Fin
-
-That's all the spoilers. Here are the better questions we've found:
-
-- What is a natural ordering?
-- How do we correctly chain calls to `<=>` when implementing it?
-- What are the new `std::strong_order`, `std::weak_order` and
-  `std::partial_order` customization points for?
-- What exactly are the rewriting rules?
-
-
-<!--
-We'll do an introduction to order theory first. Order is a relation, and just
-what it means is very related to what equality and equivalence mean. So, to
-start off easy, we'll go through the parts that deal with equivalence theory
-first, and then expand to order theory.
--->
-
-# Relations
-
-## Definition
-A relation $\Omega$ on a set $S$ is a subset of the set of pairs of elements
-from $S$: 
-$$
-\Omega \subseteq S \times S
-$$
-
-For $x, y \in S$, we say that they are <dfn>$\Omega$-related</dfn> iff $(x, y)
-\in \Omega$.
-
-We write this as $x \Omega y$ in infix notation.
-
-
-## Example: $\leq$ As a matrix
-
-$S = \{ a, b, c, d \}$
-
-$\leq_S$ | $a$ | $b$ | $c$ | $d$
----------+-----+-----+-----+-----
-     $a$ |$\@@$|     |     | 
-     $b$ |$\@@$|$\@@$|     |    
-     $c$ |$\@@$|$\@@$|$\@@$|    
-     $d$ |$\@@$|$\@@$|$\@@$|$\@@$
-
-Every dot is a pair in $\leq_S \, \subseteq S \times S$.
-
-
-## Example: $\leq$ as a graph
-
-$S = \{ a, b, c, d \}$
-
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-  a -> a;
-  a -> b;
-  a -> c;
-  a -> d;
-  b -> b;
-  b -> c;
-  b -> d;
-  c -> c;
-  c -> d;
-  d -> d;
-}
-```
-
-Every arrow is a pair in $\leq_S \, \subseteq S \times S$.
-
-
-## Relations as predicates
-
-For a relation $\Omega$ over $S$, there is a binary predicate $S \times S \to Bool$:
-
-$$
-\Omega(x, y) = ((x, y) \in \Omega) ? \true : \false;
-$$
-
-Example:
-
-$$
-\leq_S(x, y)
-$$
-
-
-
-
-## Order
-
-$\Omega$ is an <dfn>order</dfn> iff it is _antireflexive_, _asymmetric_ and
-_transitive_.
-
-
-## Quiz #1
-
-Reflexive, Antireflexive, Symmetric, Asymmetric, Transitive, Equivalence, Order
-
-Which is this:
-
-```{.render_dot}
-digraph G {
-  x -> x;
-  y -> y;
-  z;
-  x -> y;
-  y -> z;
-  z -> x;
-}
-```
-
-<!-- TODO quizzes. -->
-
-
-# Shoutouts
-
-- Editors of cppreference.org. You guys make everyone's lives so much easier!
-- Herb Sutter, Jens Maurer, Walter E. Brown, Barry Revzin, Jeff Snyder, David
-  Stone for working on getting ordering correct in the language.
-
--->
-
-
-
-# Partial Orders and Lattices
-
-
-
-
-# Bibliography:
-- order switching: https://htmlpreview.github.io/?https://github.com/BRevzin/cpp_proposals/blob/master/118x_spaceship/d1630r0.html
-
--
-
-<!-- end floating point -->
-
-<!--
-TODO:
-- partial orders - which algorithms are they used in
-- key functions are exactly what defines weak orders
-
-- suggestion: cmp_proxy protocol?
-- `==` is the finest equivalence that makes sense for a type, and *possibly* <=>
-  is then the finest ordering that makes sense for a type (since it is strong).
-  - types that just have a partial ordering *should* implement the
-    `partial_order` customization point, and not <=>
-- usefulness: < is a global relation that's usually O(input), not O(set) - that
-  is exactly what makes it such an amazing optimization tool.
-
-philosophy:
-
-- what about orders that are "stronger than strong"
-- an ordering induces equivalence classes
-- every type that has a strong ordering has at least two - the opposite way as
-  well.
-- strong_ordering is a signal that == induces the same equivalence classes
-- an ordering finer than strong_ordering is still a weak_ordering!
-- interplay with std::hash?
-
-- How would I use an ordering derived from std::strong_order in map?
- 
-
-maybe:
-- lattices?
-  - lattices have intervals
-- ordering for pointers.
-
-next pass:
-- order the slides so they make sense
-
-finalizing:
-- doublecheck is_eq name in complex
-- figure out how to do picture-on-the-side of the slide
-
-
--->
-
-<!--
-Topics:
-
-- Goals for today
-    - What is equality
-    - What is equivalence
-
-- Equality and Equivalence:
-    - Math:
-        - Equality: an equivalence relation that tells elements of a set apart.
-        - Equivalence: a reflexive, symmetric and transitive relation.
-    - Language:
-        - Defaulting
-        - Rewriting Rules
-
-
-
-
-
-
-
-
-
--->
 
 
