@@ -13,6 +13,7 @@ theme: black
 
 \newcommand{\iff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
+\newcommand{\Z}{\mathbb{Z}}
 
 
 # Points of Order {bg=#fff}
@@ -68,9 +69,329 @@ through all this.
 
 # Equality and Equivalence
 
-## Equality in Math
+## Equality
+
+In set theory, $x = y$ iff they are the same element.
+
+Let $S = \{a, b, c, d\}$.
+
+```{.render_dot}
+digraph {
+    label=S;
+    a -> a;
+    b -> b;
+    c -> c;
+    d -> d;
+}
+```
+Graph of $=_S$
+
+Let that sink in. This is crucial for understanding order.
 
 
+## Equivalence
+
+Sometimes, that is too **fine**, and we need a **coarser** relation that is
+_like_ equality, but is not equality.
+
+
+```{.render_dot}
+digraph {
+    label=S;
+    {a, b} -> {a, b};
+    {c, d} -> {c, d};
+}
+```
+Graph of $\sim$
+
+Let's call this relation on $S$ "$\sim$". $a \sim b$ and $c \sim d$.
+
+
+## Equivalence Classes
+
+Equivalence relations like $\sim$ induce equivalence classes over the elemements:
+
+```{.render_dot}
+digraph {
+    subgraph cluster_X {
+        {a, b} -> {a, b};
+
+        label="E";
+        graph [style=dotted];
+    }
+
+    subgraph cluster_Y {
+        {c, d} -> {c, d};
+
+        label="F";
+        graph [style=dotted];
+    }
+    label=P;
+}
+```
+
+$P = \{E, F\}$, where $E = \{a, b\}$ and $F = \{c, d\}$.
+
+
+## Quotient Set
+
+```{.render_dot}
+digraph {
+    subgraph cluster_X {
+        {a, b} -> {a, b};
+
+        label="E";
+        graph [style=dotted];
+    }
+
+    subgraph cluster_Y {
+        {c, d} -> {c, d};
+
+        label="F";
+        graph [style=dotted];
+    }
+    label=P;
+}
+```
+
+The set $P = \{E, F\}$ is also called a **quotient set**, and denoted $S/\sim$.
+
+
+## Equality on the Quotient Set
+
+We can test equality on $P$ cheaply through $\sim$!
+```{.render_dot}
+digraph {
+    subgraph cluster_X {
+        {a, b} -> {a, b};
+
+        label="E";
+        graph [style=dotted];
+    }
+
+    subgraph cluster_Y {
+        {c, d} -> {c, d};
+
+        label="F";
+        graph [style=dotted];
+    }
+    label=P;
+}
+```
+
+$(X, Y\in P: X =_P Y) \iff (\exists x \in X, y \in Y: x \sim y)$<br>
+It's true for any element.
+
+
+## The Punchline
+
+Through this process, the _equivalence_ $\sim$ on $S$ **induces** an _equality_
+on the quotient set $S/\sim$.
+
+This is true for any equivalence relation.
+
+If we are not being careful with our words, we just say that $\sim$ is an
+equality over the set of its equivalence classes.
+
+
+## Bonus:
+
+Note the cheap testing - checking for _equality_ of equivalence classes is the same as checking for _equivalence_ of any two representatives.
+
+This is far faster than checking for set equality, which can be $O(n^2)$.
+
+
+# Equality and Equiv.: C++
+
+## Context: Types
+
+What is a type?
+
+From Elements of Programming:
+
+- A **value type** is a correspondence between a _species_ and a `datum`.
+- **datum**: a finite sequence of 1s and 0s.
+- **Species**: describes a set of common properties of _essentially equivalent_ entities.
+
+Oh well, that got us far :).
+
+
+## The Point
+
+Equality and Type are inextricably linked. Effectively, EoP says:
+
+- a type is how we map _datum_s to entities;
+- what an entity *is* is determined by the Equivalence, which separates
+  different entities.
+
+This equivalence over _entities_ induces an _equality_ on the type.
+
+
+## Let me Repeat
+
+The equivalence over entities ~~induces~~ _defines_ ~~an~~ the equality on the type.
+
+
+## Example: `int32_t`
+
+- Species: subset of $\Z$.
+- Equivalence: $=_{\Z}$
+- Datum: 32 consecutive bits
+- Induced equality: bitwise comparison
+
+
+## Example: null-terminated case-insensitive string (ascii)
+
+- Species: strings of (abstract) ascii characters, ending in `0`
+- Equivalence: case-insensitive comparison
+- Datum: an arbitrarily long sequence of bytes
+- Induced equality: `stricmp(x, y) == 0`
+
+Yes, it's an **equality**.
+
+
+## Example: `std::string`
+
+- Species: strings of abstract characters.
+- Equivalence: character-by-character comparison.
+- Datum: an arbitrarily long sequence of bytes, with length, location and capacity
+  information, possibly disjoint.
+- Induced equality: `std::string operator==`
+
+Note that we ignore `capacity()`. This is *obvious* from the _species_ that `std::string` is related to.
+
+
+# Equivalence: _finer_ and _coarser_
+
+## Examples:
+
+Some equivalences over `std::string`:
+
+- `x == y`
+- `strcmp(x, y)`
+- `stricmp(x, y)`
+- `x.size() == y.size()`
+- `x == y && x.capacity() == y.capacity()`
+
+
+## Definitions
+
+Let $\Omega$ and $\Delta$ be equivalences over the same set.
+
+$\Delta$ is <dfn>finer</dfn> than $\Omega$ iff<br>
+whenever $\Delta$ deems elements equivalent, so does $\Omega$.
+
+$\forall x, y: x \Delta y \Rightarrow x \Omega y$
+
+We say that $\Omega$ is coarser than $\Delta$.
+
+
+## Exercise:
+
+1. `x == y`
+2. `strcmp(x, y)`
+3. `stricmp(x, y)`
+4. `x.size() == y.size()`
+5. `x == y && x.capacity() == y.capacity()`
+
+Which ones are finer than others?
+
+You can think of $\Delta$ having a "better resolution".
+
+
+## Answers:
+
+1. `std::string::operator==` - finest
+2. `strcmp(x, y)` - ignores everything after a `\0` - coarser than 1
+3. `stricmp(x, y)` - also ignores case - coarser than 2
+4. `x.size() == y.size()` - coarser than 5 and 1, independent of 2 and 3
+5. `x == y && x.capacity() == y.capacity()` - finest
+
+
+## So what about 5?
+
+It's not an equality:
+
+- for one, it's not `==`, and that's what equality is `defined` as
+- it's not in tune with the _species_ of `std::string`
+
+
+It's not even an equivalence over `std::string`!
+
+It *is* an equivalence (and even an equality) on some other type that shares
+`std::string`'s representation, but not its _species_.
+
+
+## Proof by counterexample
+
+The trick: substitute equal element in equation.
+
+Symmetry:
+```cpp
+bool eq(x, y) { return x == y && x.capacity() == y.capacity(); }
+std::string a{}, b{};
+a.reserve(1);
+eq(a, a) => eq(a, a)  // substitute the last a for b, since a == b
+eq(a, a) => eq(a, b)  // implication does not hold (true => false)
+```
+`eq` is not an equivalence relation over `std::string`.
+
+
+## Equality Take-Aways
+
+- Equality is the finest equivalence on the type
+    - (perhaps not on the representation)
+- There is no such thing as weak equality
+- Equality (`op==`) *encodes* the species of the type
+
+
+# C++20: Equality Rules
+
+## Defaulted operator==:
+
+```cpp
+struct X : Base {
+  int a;
+  Y b;
+  Z c;
+
+  // bool operator==(X const&) constexpr const = default
+  bool operator==(X const& y) const {
+    Base const& base = *this;
+    Base const& y_base = y;
+    return base == y_base && a == y.a && b == y.b && c == y.c;
+  }
+
+};
+```
+
+## Order Switching: `t == u` $\to$ `u == t`
+
+Let `T` and `U` be types, and `t` and `u` values of those types.
+
+```t == u```
+
+The language will try:
+
+* `t.operator==(u)`, `operator==(t, u)`
+* `u.operator==(t)`, `operator==(u, t)`
+
+
+These form an overload set. Same goes for `!=`
+
+
+## `t != u` $\to$ `!(t == u)`
+
+If `operator!=` is not defined for `T`, then rewriting happens:
+
+```cpp
+t != u; // rewrites to !(t == u)
+```
+
+Of course, additional order switching may happen afterwards.
+
+
+# Order
 
 
 
@@ -399,18 +720,6 @@ The equivalence relation
 -  it is _not_ an equality over the original set (unless it is `==`).
 
 
-## Finer-than
-
-Let $\Omega$ and $\Delta$ be equivalences over the same set.
-
-$\Delta$ is <dfn>finer</dfn> than $\Omega$ iff when $\Delta$ deems elements
-equivalent, so does $\Omega$.
-
-$\forall x, y: x \Delta y \Rightarrow x \Omega y$
-
-You can think of $\Delta$ having a "better resolution".
-
-Trivially, equality on a set is the _finest_ of all equivalence relations.
 
 
 # What is equality
@@ -529,9 +838,11 @@ Consider this graph of the relation $\prec$.
 
 ```{.render_dot}
 digraph G {
-  bgcolor=transparent;
-  a -> c [style=solid];
-  b;
+    bgcolor=transparent;
+    color=white;
+
+    a -> c [style=solid];
+    b;
 }
 ```
 
@@ -579,25 +890,6 @@ if (match != end() || *match != needle) {
 }
 ```
 
-# Autogeneration Rules
-
-## `bool operator==(T const&)`
-
-```cpp
-struct X : Base {
-  int a;
-  Y b;
-  Z c;
-
-  // bool operator==(X const&) constexpr const = default
-  bool operator==(X const& y) const {
-    Base const& base = *this;
-    Base const& y_base = y;
-    return base == y_base && a == y.a && b == y.b && c == y.c;
-  }
-
-};
-```
 
 
 ## `std::strong_ordering operator<=>(T const&)`
@@ -621,32 +913,6 @@ struct X : Base {
 ```
 
 
-# Rewriting Rules
-
-## Order Switching: `t == u` $\to$ `u == t`
-
-Let `T` and `U` be types, and `t` and `u` values of those types.
-
-```t == u```
-
-The language will try:
-
-* `t.operator==(u)`, `operator==(t, u)`
-* `u.operator==(t)`, `operator==(u, t)`
-
-
-These form an overload set. Same goes for `!=`
-
-
-## `t != u` $\to$ `!(t == u)`
-
-If `operator!=` is not defined for `T`, then rewriting happens:
-
-```cpp
-t != u; // rewrites to !(t == u)
-```
-
-Of course, additional order switching may happen afterwards.
 
 
 ## Relational Operators $\to$ `<=>`
