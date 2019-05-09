@@ -343,6 +343,9 @@ eq(a, a) => eq(a, b)  // implication does not hold (true => false)
     - (perhaps not on the representation)
 - There is no such thing as weak equality
 - Equality (`op==`) *encodes* the species of the type
+- $x == y \imp f(x) == f(y)$ substitutability works for math, but is a
+  confusing notion in programming. It's better to think in terms of the domain,
+  where the _species_ is from.
 
 
 # C++20: Equality Rules
@@ -392,6 +395,8 @@ Of course, additional order switching may happen afterwards.
 
 
 # Order
+
+
 
 
 
@@ -708,30 +713,6 @@ digraph G {
 ```
 
 <!-- TODO quizzes. -->
-
-# Properties of Equivalence Relations
-
-## Equivalence classes
-
-An equivalence relation splits a set into <dfn>equivalence classes</dfn>.
-
-The equivalence relation
--  <dfn>induces an equality</dfn> on the set of _equivalence classes_
--  it is _not_ an equality over the original set (unless it is `==`).
-
-
-
-
-# What is equality
-
-What is life? What is meaning?
-
-<aside class="notes" data-markdown>
-Math: You have a set. The set has elements. An element is only equal to itself.
-
-That might not be very useful - equality on the real numbers is a very complicated affair, for instance - crucially, though, there is only one $\pi$.
-</aside>
-
 
 # Order Relations
 
