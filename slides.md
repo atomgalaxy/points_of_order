@@ -210,7 +210,7 @@ What is a type?
 From Elements of Programming:
 
 - A **value type** is a correspondence between a _species_ and a `datum`.
-- **datum**: a finite sequence of 1s and 0s.
+- **datum**: a finite sequence of $1$s and $0$s.
 - **Species**: describes a set of common properties of _essentially equivalent_ entities.
 
 Oh well, that got us far :).
@@ -220,7 +220,7 @@ Oh well, that got us far :).
 
 Equality and Type are inextricably linked. Effectively, EoP says:
 
-- a type is how we map _datum_s to entities;
+- a type is how we map _datums_ to entities;
 - what an entity *is* is determined by the Equivalence, which separates
   different entities.
 
@@ -296,14 +296,12 @@ We say that $\Omega$ is coarser than $\Delta$.
 
 Which ones are finer than others?
 
-You can think of $\Delta$ having a "better resolution".
-
 
 ## Answers:
 
 1. `std::string::operator==` - finest
-2. `strcmp(x, y)` - ignores everything after a `\0` - coarser than 1
-3. `stricmp(x, y)` - also ignores case - coarser than 2
+2. `strcmp(x, y)` - ignores everything after a `\0`
+3. `stricmp(x, y)` - also ignores case
 4. `x.size() == y.size()` - coarser than 5 and 1, independent of 2 and 3
 5. `x == y && x.capacity() == y.capacity()` - finest
 
@@ -312,7 +310,7 @@ You can think of $\Delta$ having a "better resolution".
 
 It's not an equality:
 
-- for one, it's not `==`, and that's what equality is `defined` as
+- for one, it's not `==`, and that's what equality is *defined* as
 - it's not in tune with the _species_ of `std::string`
 
 
@@ -395,7 +393,6 @@ Of course, additional order switching may happen afterwards.
 
 
 # Order
-
 
 
 

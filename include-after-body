@@ -4,7 +4,11 @@ Reveal.configure({
     keyboard: {
         39: 'next',
         37: 'prev',
-    }
+    },
+    width: 1024,
+    height: 750
 });
 </script>
-<!-- vim: ft=html -->
+<!--
+    vim: ft=html
+-->
