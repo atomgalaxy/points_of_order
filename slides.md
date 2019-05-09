@@ -13,6 +13,7 @@ theme: black
 \newcommand{\iff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
 
+
 # Points of Order {bg=#fff}
 
 Gašper Ažman
@@ -124,12 +125,6 @@ That's all the spoilers. Here are the better questions we've found:
   `std::partial_order` customization points for?
 - What exactly are the rewriting rules?
 
-
-# Math Plan
-
-1. Relations
-2. Equivalence theory
-3. Order theory
 
 <!--
 We'll do an introduction to order theory first. Order is a relation, and just
@@ -468,21 +463,40 @@ $\Box$
 
 ## Problem statement
 
-Let $\subset$ be a **partial** ordering over the set $S$. Prove that 
+Let $\prec$ be a **partial** ordering over the set $S$. Prove that 
 $$
-\neg(x \subset y) \wedge \neg(y \subset x)
+\neg(x \prec y) \wedge \neg(y \prec x)
 $$
 need not be an equivalence relation. Let's call it $\Delta$ again.
 
 
 ## The rub
 
-$\neg(x \subset y) \wedge \neg(y \subset x)$
+$\neg(x \prec y) \wedge \neg(y \prec x)$
 
-- reflexivity: It's obviously reflexive, since $x \subset x$ is always
+- reflexivity: It's obviously reflexive, since $x \prec x$ is always
   `false`.$\Box$
 - symmetry: the expression is symmetric. $\Box$
 - transitivity: ... we might find something.
+
+
+## Transitivity
+
+Consider this graph of the relation $\prec$.
+
+```{.render_dot}
+digraph G {
+  bgcolor=transparent;
+  a -> c [style=solid];
+  b;
+}
+```
+
+* $a \Delta b$ and $b \Delta c$, since neither pair are $\prec$-related.
+* If $\Delta$ were transitive, it would follow $a \Delta c$.
+* However, $a \prec c$, which means $\neg (a \Delta c)$.
+* We have found a counterexample.$\Box$
+
 
 # When should I actually call `<=>` by name?
 
@@ -706,23 +720,6 @@ customization point!
 - Herb Sutter, Jens Maurer, Walter E. Brown, Barry Revzin, Jeff Snyder, David
   Stone for working on getting ordering correct in the language.
 
-## Transitivity
-
-Consider this graph of the relation $\subset$.
-
-```{.render_dot}
-digraph G {
-  bgcolor=transparent;
-  a -> c [style=solid];
-  b;
-}
-```
-
-* $a \Delta b$ and $b \Delta c$, since neither pair are $\subset$-related.
-* If $\Delta$ were transitive, it would follow $a \Delta c$.
-* However, $a \subset c$, which means $\neg (a \Delta c)$.
-* We have found a counterexample.$\Box$
-
 
 # Floating Point (iec559 types)
 
@@ -858,14 +855,6 @@ philosophy:
 
 - How would I use an ordering derived from std::strong_order in map?
  
-
-
-needs internet:
-- define operator <=> for a class that can't forward it (how does the standard
-  synthesize it?)
-- the rewriting rules: have a few slides describing those
-- fallback* functions - at least mention them. Maybe when we're defining the
-  class that is defining its own?
 
 maybe:
 - lattices?
