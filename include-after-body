@@ -1,0 +1,10 @@
+<script type='text/javascript'>
+Reveal.configure({
+    navigationMode: 'linear',
+    keyboard: {
+        39: 'next',
+        37: 'prev',
+    }
+});
+</script>
+<!-- vim: ft=html -->

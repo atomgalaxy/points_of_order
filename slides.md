@@ -4,6 +4,7 @@ pdf: points_of_order.pdf
 slideNumber: true
 controls: true
 theme: black
+
 ---
 
 \newcommand{\@@}{\cdot}
@@ -21,6 +22,56 @@ Gašper Ažman
 May 9th, 2019
 
 <img src='assets/cpp_now_logo.svg' style='height: 3ex'>
+
+
+# Intro
+
+## Agenda
+
+We'll look at
+
+- How order works in mathematics
+- How C++ models that
+- How C++ supports _you_ in getting it right.
+
+
+<aside class="notes" data-markdown>
+Hello, thank you for coming!
+
+This today will be a joint math and C++ talk.
+</aside>
+
+
+## Thank You, Coauthors!
+
+- **Barry Revzin**, for writing so many papers about this I've lost count
+- **Jeff Snyder**, for writing P0863 and then co-authoring P0891R2 with me
+- **Lawrence Crowl**, for merging the venerable P0100 with P0891R2
+
+
+## Thank You, Collaborators!
+
+- **Herb Sutter**, **Jens Maurer** and **Walter E. Brown** for writing the original P0515,
+  and oh-so-much of their time and patience
+- **Tony van Eerd** and **Lisa Lippincott**, for their input around what
+  "strong" means, and **Arthur O'Dwyer** for further detailed discussion
+- **Agustín Bergé**, **Tim Song** and **Richard Smith** for further deep
+  discussions about implementation and specification
+
+## 💖💖💖
+
+And by far the most, my wife, **Zoetica Ebb**, for keeping me alive and sane
+through all this.
+
+🌌🦄🌈
+
+
+# Equality and Equivalence
+
+## Equality in Math
+
+
+
 
 
 # Spoilers
@@ -86,15 +137,7 @@ $^\dagger$ unless chaining or you know better.
 <!-- this is super cool because you need less codegen -->
 ## Have you solved `float`?
 
-`float` is, and will remain, not Regular. But, we now have a
-`strong_order$^\dagger$` and a `weak_order$^\dagger$` on floats in the language,
-so you can stop using assembly for that, and put floats in maps even if there
-are `NaN`s.
-
-<div class='footnotes'>
-$^\dagger$ `questions.push("std::strong_order and std::weak_order???");`
-</div>
-
+Yeah.
 
 ## Can I put random stuff into maps yet?
 
@@ -728,7 +771,7 @@ customization point!
 `float`, `double` and `long double` are offering the iec559 ordering primitives.
 
 Lawrence Crowl deserves the shout-out for this one; while my own (joint) paper
-brought it home, he started it many years ago.
+brought it home, he started it many years ago with P0100.
 
 
 ## Strong Order
@@ -870,3 +913,30 @@ finalizing:
 
 
 -->
+
+<!--
+Topics:
+
+- Goals for today
+    - What is equality
+    - What is equivalence
+
+- Equality and Equivalence:
+    - Math:
+        - Equality: an equivalence relation that tells elements of a set apart.
+        - Equivalence: a reflexive, symmetric and transitive relation.
+    - Language:
+        - Defaulting
+        - Rewriting Rules
+
+
+
+
+
+
+
+
+
+-->
+
+
