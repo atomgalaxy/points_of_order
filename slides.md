@@ -24,9 +24,9 @@ theme: black
 
 Gašper Ažman
 
-May 9th, 2019
+May 20th, 2019
 
-<img src='assets/cpp_now_logo.svg' style='height: 3ex'>
+<img src='assets/cpplondon-logo-light.svg' style='height: 3ex'>
 
 
 # Intro
