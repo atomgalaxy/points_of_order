@@ -804,6 +804,7 @@ through all this.</p>
 </g>
 </svg><br>
 It’s true for any element.</p>
+<!-- _asdf -->
 </section>
 <section id="the-punchline" class="level2">
 <h2>The Punchline</h2>
@@ -847,7 +848,8 @@ equality over the set of its equivalence classes.</p>
 </section>
 <section id="bonus" class="level2">
 <h2>Bonus:</h2>
-<p>Note the cheap testing - checking for <em>equality</em> of equivalence classes is the same as checking for <em>equivalence</em> of any two representatives.</p>
+<p>Note the cheap testing - checking for <em>equality</em> of equivalence classes is the
+same as checking for <em>equivalence</em> of any two representatives.</p>
 <p>This is far faster than checking for set equality, which can be <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="6.032ex" height="3.009ex" style="vertical-align: -0.838ex;" viewBox="0 -934.9 2596.9 1295.7" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <path stroke-width="1" id="E1-MJMATHI-4F" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path>
@@ -891,7 +893,8 @@ equality over the set of its equivalence classes.</p>
  <use xlink:href="#E1-MJMAIN-30" x="0" y="0"></use>
 </g>
 </svg>s.</li>
-<li><strong>Species</strong>: describes a set of common properties of <em>essentially equivalent</em> entities.</li>
+<li><strong>Species</strong>: describes a set of common properties of <em>essentially equivalent</em>
+entities.</li>
 </ul>
 <p>Oh well, that got us far :).</p>
 </section>
@@ -907,7 +910,8 @@ different entities.</li>
 </section>
 <section id="let-me-repeat" class="level2">
 <h2>Let me Repeat</h2>
-<p>The equivalence over entities <del>induces</del> <em>defines</em> <del>an</del> the equality on the type.</p>
+<p>The equivalence over entities <del>induces</del> <em>defines</em> <del>an</del> the equality on the
+type.</p>
 </section>
 <section id="example-int32_t" class="level2">
 <h2>Example: <code>int32_t</code></h2>
@@ -929,11 +933,10 @@ different entities.</li>
  <use xlink:href="#E1-MJMAIN-3D" x="0" y="0"></use>
  <use transform="scale(0.707)" xlink:href="#E1-MJAMS-5A" x="1100" y="-213"></use>
 </g>
-</svg></li>
+</svg> <!-- _asdf --></li>
 <li>Datum: 32 consecutive bits</li>
 <li>Induced equality: bitwise comparison</li>
 </ul>
-<!-- _ -->
 </section>
 <section id="example-null-terminated-case-insensitive-string-ascii" class="level2">
 <h2>Example: null-terminated case-insensitive string (ascii)</h2>
@@ -950,11 +953,12 @@ different entities.</li>
 <ul>
 <li>Species: strings of abstract characters.</li>
 <li>Equivalence: character-by-character comparison.</li>
-<li>Datum: an arbitrarily long sequence of bytes, with length, location and capacity
-information, possibly disjoint.</li>
+<li>Datum: an arbitrarily long sequence of bytes, with length, location and
+capacity information, possibly disjoint.</li>
 <li>Induced equality: <code>std::string operator==</code></li>
 </ul>
-<p>Note that we ignore <code>capacity()</code>. This is <em>obvious</em> from the <em>species</em> that <code>std::string</code> is related to.</p>
+<p>Note that we ignore <code>capacity()</code>. This is <em>obvious</em> from the <em>species</em> that
+<code>std::string</code> is related to.</p>
 </section>
 </section>
 <section id="equivalence-finer-and-coarser" class="level1">
@@ -1073,11 +1077,11 @@ whenever <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.936ex" height=
 <section id="answers" class="level2">
 <h2>Answers:</h2>
 <ol type="1">
-<li><code>std::string::operator==</code> - finest</li>
-<li><code>strcmp(x, y)</code> - ignores everything after a <code>\0</code></li>
-<li><code>stricmp(x, y)</code> - also ignores case</li>
-<li><code>x.size() == y.size()</code> - coarser than 5 and 1, independent of 2 and 3</li>
-<li><code>x == y &amp;&amp; x.capacity() == y.capacity()</code> - finest</li>
+<li><code>x == y</code> :: baseline</li>
+<li><code>strcmp(x, y)</code> :: ignores everything after a <code>\0</code></li>
+<li><code>stricmp(x, y)</code> :: also ignores case</li>
+<li><code>x.size() == y.size()</code> :: coarser than 5 and 1, independent of 2 and 3</li>
+<li><code>x == y &amp;&amp; x.capacity() == y.capacity()</code> :: finest</li>
 </ol>
 </section>
 <section id="so-what-about-5" class="level2">
@@ -1134,7 +1138,10 @@ eq(a, a) =&gt; eq(a, b)  // implication does not hold (true =&gt; false)</code><
 </section>
 <section id="section-2" class="level2">
 <h2></h2>
-<p>There is no such thing as weak equality</p>
+<p>There is no such thing as weak equality.</p>
+<div class="footnotes">
+<p>Ask Tony van Eerd if you don’t believe your own brain.</p>
+</div>
 </section>
 <section id="section-3" class="level2">
 <h2></h2>
@@ -1874,7 +1881,7 @@ exactly one of the statements is true for any given pair <svg xmlns:xlink="http:
  <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-223C" x="707" y="-405"></use>
 </g>
 </g>
-</svg> is a linear order on <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.172ex" height="2.843ex" style="vertical-align: -0.583ex; margin-bottom: -0.255ex;" viewBox="0 -863.1 1796.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
+</svg><!-- _a--> is a linear order on <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.172ex" height="2.843ex" style="vertical-align: -0.583ex; margin-bottom: -0.255ex;" viewBox="0 -863.1 1796.5 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
 <defs>
 <path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
 <path stroke-width="1" id="E1-MJMAIN-2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path>
@@ -1887,7 +1894,7 @@ exactly one of the statements is true for any given pair <svg xmlns:xlink="http:
  <use transform="scale(0.707)" xlink:href="#E1-MJMAIN-223C" x="707" y="-405"></use>
 </g>
 </g>
-</svg>.</p>
+</svg>.<!-- _a--></p>
 </section>
 <section id="strong-order" class="level2">
 <h2>Strong Order</h2>
@@ -2572,8 +2579,8 @@ equality, and is therefore always a strong order.</p>
 <p>Some types have a natural strong order.</p>
 </section>
 </section>
-<section id="properties-of-order-releations" class="level1">
-<h1>Properties of Order Releations</h1>
+<section id="properties-of-order-relations" class="level1">
+<h1>Properties of Order Relations</h1>
 <section id="finer-order" class="level2">
 <h2>Finer Order</h2>
 <p>We say a linear order <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.808ex" height="1.843ex" style="vertical-align: -0.338ex;" viewBox="0 -647.8 778.5 793.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -2686,7 +2693,8 @@ since it’s not a predicate.</p>
 <p><code>strcmp(char const*, char const*)</code> should be returning <code>std::strong_ordering</code>,
 or a type derived from it. It is a strong order wirth respect to
 <code>strcmp(x, y) == 0</code>, which is its equality.</p>
-<p>The lexicographical order on <code>std::complex&lt;float, float&gt;</code> (if we disallow NaN and infinities) is a strong order, but not a natural order.</p>
+<p>The lexicographical order on <code>std::complex&lt;float, float&gt;</code> (if we disallow NaN
+and infinities) is a strong order, but not a natural order.</p>
 <p>There are infinitely many strong orders on the complex numbers: can you think
 of them?</p>
 </section>
@@ -2750,26 +2758,26 @@ disambiguator, because of where they are used (graphs, scheduling, etc).</p>
 </ul>
 </section>
 </section>
-<section id="when-should-i-actually-call-by-name" class="level1">
-<h1>When should I actually call <code>&lt;=&gt;</code> by name?</h1>
-<p>Binary search of all kinds, or if implementing <code>&lt;=&gt;</code>.</p>
-<pre class="cpp"><code>iterator map&lt;T&gt;::find(T const&amp; needle) {
-  node* current = _head;
-  while (current != nullptr) {
-    std::weak_ordering const result = current-&gt;value &lt;=&gt; needle;
-    switch (result) {
-      case ::std::weak_ordering::equivalent:
-        return {current};
-      case ::std::weak_ordering::less:
-        current = current-&gt;left;  break;
-      case ::std::weak_ordering::greater;
-        current = current-&gt;right; break;
-  }
-  return end();
-}</code></pre>
+<section id="c-semantics" class="level1">
+<h1>C++: <code>&lt;=&gt;</code> semantics</h1>
+<section id="three-way-comparison-operator" class="level2">
+<h2>Three-way comparison operator</h2>
+<p>An operator that lets us <em>consicely</em> encode the <em>natural order</em> on the type.</p>
 </section>
-<section id="is-an-optimization-of" class="level1">
-<h1><code>==</code> is an optimization of <code>&lt;=&gt;</code></h1>
+<section id="obvious-corrolary" class="level2">
+<h2>Obvious corrolary</h2>
+<p><code>&lt;=&gt;</code> should always return <code>std::strong_ordering</code>, if <code>&lt;=&gt;</code> exists.</p>
+<p>This follows directly from representing natural orders.</p>
+</section>
+<section id="if-you-dont-follow-this-advice" class="level2">
+<h2>If you don’t follow this advice?</h2>
+<p><code>(x &lt; y) + (x == y) + (x &gt; y)</code> need not be <code>1</code>. You will break poor,
+unsuspecting code that looks correct.</p>
+<p>Madness.</p>
+</section>
+<section id="further-is-an-optimization-of" class="level2">
+<h2>Further: <code>==</code> is an optimization of <code>&lt;=&gt;</code></h2>
+<p>Repeat: <code>&lt;=&gt;</code> should always return <code>std::strong_ordering</code>, if <code>&lt;=&gt;</code> exists.</p>
 <p>The first thing you do after calling <code>lower_bound</code> is compare the return value.</p>
 <p>Don’t break this code:</p>
 <pre class="cpp"><code>auto match = std::lower_bound(begin, end, needle);
@@ -2780,8 +2788,12 @@ if (match != end() || *match != needle) {
 } else {
   /* found */
 }</code></pre>
-<section id="stdstrong_ordering-operatort-const" class="level2">
-<h2><code>std::strong_ordering operator&lt;=&gt;(T const&amp;)</code></h2>
+</section>
+</section>
+<section id="c-behaviour" class="level1">
+<h1>C++: <code>&lt;=&gt;</code> behaviour</h1>
+<section id="autogenerated" class="level2">
+<h2>Autogenerated <code>&lt;=&gt;</code></h2>
 <pre class="cpp"><code>struct X : Base {
   int a;
   Y b;
@@ -2797,6 +2809,13 @@ if (match != end() || *match != needle) {
     return                          c &lt;=&gt; y.c;
   }
 };</code></pre>
+</section>
+<section id="autogeneration-properties" class="level2">
+<h2>Autogeneration properties</h2>
+<p>If you say <code>auto</code>, you get <code>std::common_comparison_category_t&lt;...&gt;</code> etc. It’s
+insane anyway - <code>&lt;=&gt;</code> should not return <code>std::weak_ordering</code>.</p>
+<p>Just specity <code>std::strong_order</code> and you will get compile-time errors for insane
+code.</p>
 </section>
 <section id="relational-operators-to" class="level2">
 <h2>Relational Operators <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="2.324ex" height="1.843ex" style="vertical-align: -0.338ex;" viewBox="0 -647.8 1000.5 793.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -2852,27 +2871,53 @@ if (match != end() || *match != needle) {
 declared as a member or not.</p>
 </section>
 </section>
+<section id="c-usage" class="level1">
+<h1>C++: <code>&lt;=&gt;</code> Usage</h1>
+<section id="when-else-should-i-actually-call-by-name" class="level2">
+<h2>When else should I actually call <code>&lt;=&gt;</code> by name?</h2>
+<p>We saw an example of using <code>&lt;=&gt;</code> directly for implementing <code>&lt;=&gt;</code>. Where else?
+Binary search of all kinds:</p>
+<pre class="cpp"><code>iterator map&lt;T&gt;::find(T const&amp; needle) {
+  node* current = _head;
+  while (current != nullptr) {
+    std::weak_ordering const result = current-&gt;value &lt;=&gt; needle;
+    switch (result) {
+      case ::std::weak_ordering::equivalent:
+        return {current};
+      case ::std::weak_ordering::less:
+        current = current-&gt;left;  break;
+      case ::std::weak_ordering::greater;
+        current = current-&gt;right; break;
+  }
+  return end();
+}</code></pre>
+</section>
+<section id="dont-actually-call" class="level2">
+<h2>Don’t actually call <code>&lt;=&gt;</code></h2>
+<p>Just call the regular comparison operators.</p>
+<ul>
+<li>They will do the right thing</li>
+<li>Less codegen, because only one function.</li>
+</ul>
+</section>
+</section>
 <section id="beyond" class="level1">
 <h1>Beyond <code>&lt;=&gt;</code></h1>
+<p>That’s really all that’s to know about <code>&lt;=&gt;</code>.</p>
+<p>The rest of the complexity is elsewhere.</p>
 </section>
-<section id="the-purpose-of-stdweak_ordering" class="level1">
-<h1>The purpose of <code>std::weak_ordering</code></h1>
-<section id="when" class="level2">
-<h2>When?</h2>
-<p>A <em>total ordering</em> is a <em>weak ordering</em> when its equivalence is different from
-equality <em>on the type</em>.</p>
-<p>Let this sink in.</p>
-<p><code>compare(x, y) == 0</code> is different from <code>x == y</code>.</p>
-<div class="footnotes">
-<p><code>questions.push("But what about case_insensitive_string?!!");</code></p>
-</div>
-</section>
-<section id="the-great-reveal-its-for-3-way-comparators" class="level2">
-<h2>The Great Reveal: it’s for 3-way comparators</h2>
-<p><code>std::weak_ordering case_insensitive_compare(std::string const&amp; x, std::string const&amp; y)</code>.</p>
-<p>When your comparator is not compatible with the <code>==</code> on the type, use a
-<code>std::weak_ordering</code>.</p>
-<p>It’s a bit niche.</p>
+<section id="why-stdweak_ordering" class="level1">
+<h1>Why <code>std::weak_ordering</code></h1>
+<section id="when-do-we-use-it" class="level2">
+<h2>When do we use it</h2>
+<p>Almost all named comparators should return <code>std::weak_ordering</code>.</p>
+<p>Most named comparators are of the form:</p>
+<pre class="cpp"><code>auto make_compare(auto projection) {
+  return [projection](auto const&amp; x, auto const&amp; y) -&gt; std::weak_ordering {
+    return projection(x) &lt;=&gt; projection(y);
+  }
+}</code></pre>
+<p>(<code>&lt;=&gt;</code> on the codomain of <code>projection</code> is probably a strong order)</p>
 </section>
 </section>
 <section id="so-what-about-case_insensitive_string" class="level1">
@@ -2907,11 +2952,14 @@ equality <em>on the type</em>.</p>
 <section id="the-purpose-of-stdpartial_ordering" class="level1">
 <h1>The purpose of <code>std::partial_ordering</code></h1>
 <p>It’s to express partial orders, d0h!</p>
-<p>Don’t make <code>operator&lt;=&gt;</code> return <code>std::partial_order</code>.</p>
+<p>Don’t make <code>operator&lt;=&gt;</code> return <code>std::partial_order</code>. Ever. I will find you, and
+I will … not accept your pull request.</p>
 </section>
 <section id="natural-orderings" class="level1">
 <h1>Natural Orderings</h1>
+<p>Let me repeat again, so that it sinks in for real:</p>
 <p><code>&lt;=&gt;</code> expresses natural strong orderings.</p>
+<p>If it ain’t natural and strong, it doesn’t deserve the name.</p>
 </section>
 <section id="any-order-for-your-type" class="level1">
 <h1>Any-order for your type</h1>
@@ -2921,6 +2969,52 @@ one. What do you do?</p>
 customization point!</p>
 <p>(<code>std::strong_order</code> will dispatch to it, or <code>&lt;=&gt;</code> if it returns
 <code>std::strong_ordering</code>)</p>
+</section>
+<section id="not-a-natural" class="level1">
+<h1>Not A Natural</h1>
+<section id="lets-take-complext" class="level2">
+<h2>Let’s take <code>complex&lt;T&gt;</code></h2>
+<p>Complex numbers don’t have a natural ordering, but we still want to put them
+into maps. A lexicographic ordering is fast, and it would make sense for it to
+be shipped with complex. So how do we do that?</p>
+<p>Also, let’s make complex Regular, because it will be a better example that way.</p>
+</section>
+<section id="should-we-define" class="level2">
+<h2>Should we define <code>&lt;=&gt;</code>?</h2>
+</section>
+<section id="should-we-define-1" class="level2">
+<h2>Should we define <code>&lt;=&gt;</code>?</h2>
+<p>NO! <code>&lt;=&gt;</code> is for natural orderings, and complex numbers don’t have one.</p>
+</section>
+<section id="example-cont." class="level2">
+<h2>Example (cont.):</h2>
+<p>Defining for complex:</p>
+<pre class="cpp"><code>struct my_complex {
+  float real;
+  float imag;
+
+  bool operator==(complex other) {
+    return std::strong_order(real, other.real) == 0 &amp;&amp;
+           std::strong_order(imag, other.imag);
+  }
+
+  friend std::strong_ordering strong_order(my_complex const&amp; x,
+                                           my_complex const&amp; y) {
+    if (auto r = std::strong_order(x.real, y.real); r != 0) { return r; }
+    return       std::strong_order(x.imag, y.imag);
+  }
+  friend std::weak_ordering weak_order(my_complex const&amp; x,
+                                           my_complex const&amp; y) {
+    if (auto r = std::weak_order(x.real, y.real); r != 0) { return r; }
+    return       std::weak_order(x.imag, y.imag);
+  }
+  friend std::partial_ordering partial_order(my_complex const&amp; x,
+                                             my_complex const&amp; y) {
+    if (auto r = x.real &lt;=&gt; y.real; r != 0) { return r; }
+    return       x.imag &lt;=&gt; y.imag;
+  }
+};</code></pre>
+</section>
 </section>
 <section id="floating-point-iec559-types" class="level1">
 <h1>Floating Point (iec559 types)</h1>
@@ -2949,44 +3043,6 @@ it’s currently there, and we couldn’t fix it. This keeps <code>float</code> 
 non-Regular types.</p>
 </section>
 </section>
-<section id="a-type-with-no-natural-ordering" class="level1">
-<h1>A Type with no Natural Ordering</h1>
-<section id="lets-take-complext" class="level2">
-<h2>Let’s take <code>complex&lt;T&gt;</code></h2>
-<p>Complex numbers don’t have a natural ordering, but we still want to put them
-into maps. A lexicographic ordering is fast, and it would make sense for it to
-be shipped with complex. So how do we do that?</p>
-<p>Also, let’s make complex Regular, because it will be a better example that way.</p>
-</section>
-<section id="should-we-define" class="level2">
-<h2>Should we define <code>&lt;=&gt;</code>?</h2>
-<p>NO! <code>&lt;=&gt;</code> is for natural orderings, and complex numbers don’t have one.</p>
-</section>
-<section id="so-what" class="level2">
-<h2>So… what?</h2>
-<p>We just define <code>==</code> (to fix Regular) and provide the customization points!</p>
-<pre class="cpp"><code>template &lt;typename T&gt;
-struct complex {
-  T real;
-  T imag;
-
-  bool operator==(complex other) {
-    return std::strong_order(real, other.real) == 0 &amp;&amp;
-           std::strong_order(imag, other.imag);
-  }
-
-  // != is obtained by rewriting
-  friend std::strong_ordering strong_order(complex x, complex y) {
-    if (auto r = std::strong_order(x.real, y.real); !std::is_eq(r)) { return r; }
-    return std::strong_order(x.imag, y.imag);
-  }
-  friend std::weak_ordering weak_order(complex x, complex y) {
-    if (auto r = std::weak_order(x.real, y.real); !std::is_eq(r)) { return r; }
-    return std::weak_order(x.imag, y.imag);
-  }
-};</code></pre>
-</section>
-</section>
 <section id="adapting-for-use-with-map---just-use-the-regular-operators." class="level1">
 <h1>Adapting <code>&lt;=&gt;</code> for use with Map - just use the regular operators.</h1>
 <pre class="cpp"><code>struct strong_ordering_less {
@@ -3005,847 +3061,15 @@ struct weak_ordering_less {
 
 
 std::map&lt;T, strong_ordering_less&gt;</code></pre>
-<!--
-## But what is this really about?
-
-* When and how do I define `<=>`
-* When and how do I use `<=>`
-* Have you finally solved `float`?
-* can I put random stuff into `std::map` yet?
-* What's with the rewriting rules? (There are rewriting rules?)
-
-
-## You said these are spoilers
-
-Well... more like a semi-accurate preview so we can get the first pass out of
-the way, and find better questions.
-
-Here are the answers:
-
-
-## When do I define `<=>`
-
-When your type has a natural strong$^{\dagger}$ ordering.
-
-<div class='footnotes'>
-$^\dagger$`questions.push("what are std::partial_ordering and std::weak_ordering for then?");`
-
-If you don't believe me, ask Titus Winters.
-
-`questions.push("what is a natural ordering?");`
-</div>
-
-## How do I define `<=>`
-
-```
-std::strong_ordering operator<=>(T const& other) = default;
-```
-
-`<=>` replaces `<, <=, >=, >` and sometimes `==` and `!=`.
-
-
-## When do I use `<=>`
-
-you don't, directly$^\dagger$. Use normal comparisons.
-
-<div class='footnote'>
-$^\dagger$ unless chaining or you know better.
-
-`questions.push("chaining?");`
-</div>
-
-<!-- this is super cool because you need less codegen -->
-<section id="have-you-solved-float" class="level2">
-<h2>Have you solved <code>float</code>?</h2>
-<p>Yeah.</p>
 </section>
-<section id="can-i-put-random-stuff-into-maps-yet" class="level2">
-<h2>Can I put random stuff into maps yet?</h2>
-<p><code>questions.pop("std::strong_order and std::weak_order???");</code></p>
-<p>We have new customization points for types that just want to enable uses that
-need <em>an</em> order, and don’t care what the order <em>means</em>.</p>
-</section>
-<section id="whats-with-the-rewriting-rules" class="level2">
-<h2>What’s with the rewriting rules?</h2>
-<p>There are rewriting rules. Basically:</p>
+<section id="fin" class="level1">
+<h1>Fin</h1>
+<p>Thanks for listening!</p>
 <ul>
-<li><code>x &lt; y</code> gets rewritten into <code>(x &lt;=&gt; y) &lt; 0</code> (and similar for other
-operators)</li>
-<li><code>x != y</code> gets rewritten into <code>!(x == y)</code>, and <code>==</code> will be autogenned from
-member <code>==</code>s.</li>
+<li>Do define order</li>
+<li>Be aware of what your <em>species</em> is.</li>
 </ul>
-</section>
-<section id="fin" class="level2">
-<h2>Fin</h2>
-<p>That’s all the spoilers. Here are the better questions we’ve found:</p>
-<ul>
-<li>What is a natural ordering?</li>
-<li>How do we correctly chain calls to <code>&lt;=&gt;</code> when implementing it?</li>
-<li>What are the new <code>std::strong_order</code>, <code>std::weak_order</code> and
-<code>std::partial_order</code> customization points for?</li>
-<li>What exactly are the rewriting rules?</li>
-</ul>
-<!--
-We'll do an introduction to order theory first. Order is a relation, and just
-what it means is very related to what equality and equivalence mean. So, to
-start off easy, we'll go through the parts that deal with equivalence theory
-first, and then expand to order theory.
--->
-</section>
-</section>
-<section id="relations" class="level1">
-<h1>Relations</h1>
-<section id="definition-5" class="level2">
-<h2>Definition</h2>
-<p>A relation <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.678ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 722.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
-</g>
-</svg> on a set <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.499ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 645.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
-</g>
-</svg> is a subset of the set of pairs of elements
-from <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.499ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 645.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
-</g>
-</svg>:
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="10.615ex" height="2.343ex" style="vertical-align: -0.505ex;" viewBox="0 -791.3 4570.5 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2286" d="M84 346Q84 468 166 546T360 635Q361 635 370 635T395 635T430 636T475 636T524 636H679Q694 628 694 616Q694 607 681 597L522 596H470H441Q366 596 338 592T266 568Q244 557 224 542T179 500T139 433T124 346V341Q124 253 185 185Q244 121 328 103Q348 98 366 98T522 96H681Q694 86 694 76Q694 64 679 56H526Q510 56 480 56T434 55Q350 55 289 71T172 141Q84 223 84 346ZM104 -131T104 -118T118 -98H679Q694 -106 694 -118T679 -138H118Q104 -131 104 -118Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2286" x="1000" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="2056" y="0"></use>
- <use xlink:href="#E1-MJMAIN-D7" x="2924" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="3925" y="0"></use>
-</g>
-</svg></p></p>
-<p>For <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="7.859ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 3383.7 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="572" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="1017" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2208" x="1792" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="2738" y="0"></use>
-</g>
-</svg>, we say that they are <dfn><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.678ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 722.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
-</g>
-</svg>-related</dfn> iff <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.847ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 4239.7 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-28" x="0" y="0"></use>
- <use xlink:href="#E1-MJMATHI-78" x="389" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="962" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="1407" y="0"></use>
- <use xlink:href="#E1-MJMAIN-29" x="1904" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2208" x="2571" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3A9" x="3517" y="0"></use>
-</g>
-</svg>.</p>
-<p>We write this as <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="4.163ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 1792.5 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-78" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3A9" x="572" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="1295" y="0"></use>
-</g>
-</svg> in infix notation.</p>
-</section>
-<section id="example-leq-as-a-matrix" class="level2">
-<h2>Example: <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.808ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 778.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
-</g>
-</svg> As a matrix</h2>
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.475ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 6232.1 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-7D" d="M65 731Q65 745 68 747T88 750Q171 750 216 725T279 670Q288 649 289 635T291 501Q292 362 293 357Q306 312 345 291T417 269Q428 269 431 266T434 250T431 234T417 231Q380 231 345 210T298 157Q293 143 292 121T291 -28V-79Q291 -134 285 -156T256 -198Q202 -250 89 -250Q71 -250 68 -247T65 -230Q65 -224 65 -223T66 -218T69 -214T77 -213Q91 -213 108 -210T146 -200T183 -177T207 -139Q208 -134 209 3L210 139Q223 196 280 230Q315 247 330 250Q305 257 280 270Q225 304 212 352L210 362L209 498Q208 635 207 640Q195 680 154 696T77 713Q68 713 67 716T65 731Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3D" x="923" y="0"></use>
- <use xlink:href="#E1-MJMAIN-7B" x="1979" y="0"></use>
- <use xlink:href="#E1-MJMATHI-61" x="2480" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="3009" y="0"></use>
- <use xlink:href="#E1-MJMATHI-62" x="3454" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="3884" y="0"></use>
- <use xlink:href="#E1-MJMATHI-63" x="4329" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="4762" y="0"></use>
- <use xlink:href="#E1-MJMATHI-64" x="5208" y="0"></use>
- <use xlink:href="#E1-MJMAIN-7D" x="5731" y="0"></use>
-</g>
-</svg></p>
-<table>
-<thead>
-<tr class="header">
-<th><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="3.101ex" height="2.343ex" style="vertical-align: -0.671ex;" viewBox="0 -719.6 1334.9 1008.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-53" x="1100" y="-219"></use>
-</g>
-</svg></th>
-<th><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-61" x="0" y="0"></use>
-</g>
-</svg></th>
-<th><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-62" x="0" y="0"></use>
-</g>
-</svg></th>
-<th><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-63" x="0" y="0"></use>
-</g>
-</svg></th>
-<th><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.216ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 523.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-64" x="0" y="0"></use>
-</g>
-</svg></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.23ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 529.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-61" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.998ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 429.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-62" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.007ex" height="1.676ex" style="vertical-align: -0.338ex;" viewBox="0 -576.1 433.5 721.6" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-63" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.216ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 523.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-64" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-<td><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="0.647ex" height="1.176ex" style="vertical-align: 0.439ex; margin-bottom: -0.61ex;" viewBox="0 -432.6 278.5 506.3" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-22C5" d="M78 250Q78 274 95 292T138 310Q162 310 180 294T199 251Q199 226 182 208T139 190T96 207T78 250Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-22C5" x="0" y="0"></use>
-</g>
-</svg></td>
-</tr>
-</tbody>
-</table>
-<p>Every dot is a pair in <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="11.78ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 5071.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2286" d="M84 346Q84 468 166 546T360 635Q361 635 370 635T395 635T430 636T475 636T524 636H679Q694 628 694 616Q694 607 681 597L522 596H470H441Q366 596 338 592T266 568Q244 557 224 542T179 500T139 433T124 346V341Q124 253 185 185Q244 121 328 103Q348 98 366 98T522 96H681Q694 86 694 76Q694 64 679 56H526Q510 56 480 56T434 55Q350 55 289 71T172 141Q84 223 84 346ZM104 -131T104 -118T118 -98H679Q694 -106 694 -118T679 -138H118Q104 -131 104 -118Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-53" x="1100" y="-219"></use>
- <use xlink:href="#E1-MJMAIN-2286" x="1501" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="2557" y="0"></use>
- <use xlink:href="#E1-MJMAIN-D7" x="3425" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="4426" y="0"></use>
-</g>
-</svg>.</p>
-</section>
-<section id="example-leq-as-a-graph" class="level2">
-<h2>Example: <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.808ex" height="2.176ex" style="vertical-align: -0.505ex;" viewBox="0 -719.6 778.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
-</g>
-</svg> as a graph</h2>
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.475ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 6232.1 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-7B" d="M434 -231Q434 -244 428 -250H410Q281 -250 230 -184Q225 -177 222 -172T217 -161T213 -148T211 -133T210 -111T209 -84T209 -47T209 0Q209 21 209 53Q208 142 204 153Q203 154 203 155Q189 191 153 211T82 231Q71 231 68 234T65 250T68 266T82 269Q116 269 152 289T203 345Q208 356 208 377T209 529V579Q209 634 215 656T244 698Q270 724 324 740Q361 748 377 749Q379 749 390 749T408 750H428Q434 744 434 732Q434 719 431 716Q429 713 415 713Q362 710 332 689T296 647Q291 634 291 499V417Q291 370 288 353T271 314Q240 271 184 255L170 250L184 245Q202 239 220 230T262 196T290 137Q291 131 291 1Q291 -134 296 -147Q306 -174 339 -192T415 -213Q429 -213 431 -216Q434 -219 434 -231Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-61" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-62" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-63" d="M34 159Q34 268 120 355T306 442Q362 442 394 418T427 355Q427 326 408 306T360 285Q341 285 330 295T319 325T330 359T352 380T366 386H367Q367 388 361 392T340 400T306 404Q276 404 249 390Q228 381 206 359Q162 315 142 235T121 119Q121 73 147 50Q169 26 205 26H209Q321 26 394 111Q403 121 406 121Q410 121 419 112T429 98T420 83T391 55T346 25T282 0T202 -11Q127 -11 81 37T34 159Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-7D" d="M65 731Q65 745 68 747T88 750Q171 750 216 725T279 670Q288 649 289 635T291 501Q292 362 293 357Q306 312 345 291T417 269Q428 269 431 266T434 250T431 234T417 231Q380 231 345 210T298 157Q293 143 292 121T291 -28V-79Q291 -134 285 -156T256 -198Q202 -250 89 -250Q71 -250 68 -247T65 -230Q65 -224 65 -223T66 -218T69 -214T77 -213Q91 -213 108 -210T146 -200T183 -177T207 -139Q208 -134 209 3L210 139Q223 196 280 230Q315 247 330 250Q305 257 280 270Q225 304 212 352L210 362L209 498Q208 635 207 640Q195 680 154 696T77 713Q68 713 67 716T65 731Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3D" x="923" y="0"></use>
- <use xlink:href="#E1-MJMAIN-7B" x="1979" y="0"></use>
- <use xlink:href="#E1-MJMATHI-61" x="2480" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="3009" y="0"></use>
- <use xlink:href="#E1-MJMATHI-62" x="3454" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="3884" y="0"></use>
- <use xlink:href="#E1-MJMATHI-63" x="4329" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="4762" y="0"></use>
- <use xlink:href="#E1-MJMATHI-64" x="5208" y="0"></use>
- <use xlink:href="#E1-MJMAIN-7D" x="5731" y="0"></use>
-</g>
-</svg></p>
-<p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.40.1 (0)
- -->
-<!-- Title: G Pages: 1 -->
-<svg width="153pt" height="260pt"
- viewBox="0.00 0.00 153.00 260.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
-<title>G</title>
-<!-- a -->
-<g id="node1" class="node">
-<title>a</title>
-<ellipse fill="none" stroke="#000000" cx="73" cy="-234" rx="27" ry="18"/>
-<text text-anchor="middle" x="73" y="-230.3" font-family="Times,serif" font-size="14.00" fill="#000000">a</text>
-</g>
-<!-- a&#45;&gt;a -->
-<g id="edge1" class="edge">
-<title>a&#45;&gt;a</title>
-<path fill="none" stroke="#000000" d="M92.895,-246.4321C105.688,-249.6753 118,-245.5313 118,-234 118,-225.6218 111.5006,-221.1433 103.0395,-220.5644"/>
-<polygon fill="#000000" stroke="#000000" points="102.5019,-217.1004 92.895,-221.5679 103.191,-224.0665 102.5019,-217.1004"/>
-</g>
-<!-- b -->
-<g id="node2" class="node">
-<title>b</title>
-<ellipse fill="none" stroke="#000000" cx="73" cy="-162" rx="27" ry="18"/>
-<text text-anchor="middle" x="73" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">b</text>
-</g>
-<!-- a&#45;&gt;b -->
-<g id="edge2" class="edge">
-<title>a&#45;&gt;b</title>
-<path fill="none" stroke="#000000" d="M73,-215.8314C73,-208.131 73,-198.9743 73,-190.4166"/>
-<polygon fill="#000000" stroke="#000000" points="76.5001,-190.4132 73,-180.4133 69.5001,-190.4133 76.5001,-190.4132"/>
-</g>
-<!-- c -->
-<g id="node3" class="node">
-<title>c</title>
-<ellipse fill="none" stroke="#000000" cx="27" cy="-90" rx="27" ry="18"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">c</text>
-</g>
-<!-- a&#45;&gt;c -->
-<g id="edge3" class="edge">
-<title>a&#45;&gt;c</title>
-<path fill="none" stroke="#000000" d="M59.4265,-218.1013C51.5027,-207.8948 42.0905,-193.9746 37,-180 29.792,-160.2124 27.3893,-136.4903 26.7367,-118.3693"/>
-<polygon fill="#000000" stroke="#000000" points="30.2317,-118.0852 26.5302,-108.158 23.2332,-118.2267 30.2317,-118.0852"/>
-</g>
-<!-- d -->
-<g id="node4" class="node">
-<title>d</title>
-<ellipse fill="none" stroke="#000000" cx="100" cy="-18" rx="27" ry="18"/>
-<text text-anchor="middle" x="100" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">d</text>
-</g>
-<!-- a&#45;&gt;d -->
-<g id="edge4" class="edge">
-<title>a&#45;&gt;d</title>
-<path fill="none" stroke="#000000" d="M92.1088,-221.141C104.6336,-211.483 119.9475,-197.0261 127,-180 145.6892,-134.8802 127.2832,-77.6173 113.0541,-44.6583"/>
-<polygon fill="#000000" stroke="#000000" points="116.1151,-42.9316 108.8179,-35.2503 109.7323,-45.8056 116.1151,-42.9316"/>
-</g>
-<!-- b&#45;&gt;b -->
-<g id="edge5" class="edge">
-<title>b&#45;&gt;b</title>
-<path fill="none" stroke="#000000" d="M92.895,-174.4321C105.688,-177.6753 118,-173.5313 118,-162 118,-153.6218 111.5006,-149.1433 103.0395,-148.5644"/>
-<polygon fill="#000000" stroke="#000000" points="102.5019,-145.1004 92.895,-149.5679 103.191,-152.0665 102.5019,-145.1004"/>
-</g>
-<!-- b&#45;&gt;c -->
-<g id="edge6" class="edge">
-<title>b&#45;&gt;c</title>
-<path fill="none" stroke="#000000" d="M62.3311,-145.3008C56.6414,-136.3952 49.5223,-125.2524 43.1684,-115.307"/>
-<polygon fill="#000000" stroke="#000000" points="45.9445,-113.1513 37.6111,-106.6087 40.0456,-116.92 45.9445,-113.1513"/>
-</g>
-<!-- b&#45;&gt;d -->
-<g id="edge7" class="edge">
-<title>b&#45;&gt;d</title>
-<path fill="none" stroke="#000000" d="M76.365,-144.0535C80.973,-119.4774 89.2936,-75.1008 94.7317,-46.0974"/>
-<polygon fill="#000000" stroke="#000000" points="98.1897,-46.6465 96.5926,-36.1727 91.3096,-45.3564 98.1897,-46.6465"/>
-</g>
-<!-- c&#45;&gt;c -->
-<g id="edge8" class="edge">
-<title>c&#45;&gt;c</title>
-<path fill="none" stroke="#000000" d="M46.895,-102.4321C59.688,-105.6753 72,-101.5313 72,-90 72,-81.6218 65.5006,-77.1433 57.0395,-76.5644"/>
-<polygon fill="#000000" stroke="#000000" points="56.5019,-73.1004 46.895,-77.5679 57.191,-80.0665 56.5019,-73.1004"/>
-</g>
-<!-- c&#45;&gt;d -->
-<g id="edge9" class="edge">
-<title>c&#45;&gt;d</title>
-<path fill="none" stroke="#000000" d="M42.1256,-75.0816C52.3345,-65.0125 65.9878,-51.5463 77.4693,-40.2221"/>
-<polygon fill="#000000" stroke="#000000" points="79.9806,-42.6611 84.6426,-33.147 75.0651,-37.6773 79.9806,-42.6611"/>
-</g>
-<!-- d&#45;&gt;d -->
-<g id="edge10" class="edge">
-<title>d&#45;&gt;d</title>
-<path fill="none" stroke="#000000" d="M119.895,-30.4321C132.688,-33.6753 145,-29.5313 145,-18 145,-9.6218 138.5006,-5.1433 130.0395,-4.5644"/>
-<polygon fill="#000000" stroke="#000000" points="129.5019,-1.1004 119.895,-5.5679 130.191,-8.0665 129.5019,-1.1004"/>
-</g>
-</g>
-</svg>
-</p>
-<p>Every arrow is a pair in <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="11.78ex" height="2.509ex" style="vertical-align: -0.671ex;" viewBox="0 -791.3 5071.8 1080.4" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2286" d="M84 346Q84 468 166 546T360 635Q361 635 370 635T395 635T430 636T475 636T524 636H679Q694 628 694 616Q694 607 681 597L522 596H470H441Q366 596 338 592T266 568Q244 557 224 542T179 500T139 433T124 346V341Q124 253 185 185Q244 121 328 103Q348 98 366 98T522 96H681Q694 86 694 76Q694 64 679 56H526Q510 56 480 56T434 55Q350 55 289 71T172 141Q84 223 84 346ZM104 -131T104 -118T118 -98H679Q694 -106 694 -118T679 -138H118Q104 -131 104 -118Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-53" x="1100" y="-219"></use>
- <use xlink:href="#E1-MJMAIN-2286" x="1501" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="2557" y="0"></use>
- <use xlink:href="#E1-MJMAIN-D7" x="3425" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="4426" y="0"></use>
-</g>
-</svg>.</p>
-</section>
-<section id="relations-as-predicates" class="level2">
-<h2>Relations as predicates</h2>
-<p>For a relation <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.678ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 722.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
-</g>
-</svg> over <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.499ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 645.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
-</g>
-</svg>, there is a binary predicate <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="14.165ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 6099 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-42" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-6F" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-6C" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMATHI-53" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-D7" x="867" y="0"></use>
- <use xlink:href="#E1-MJMATHI-53" x="1868" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2192" x="2791" y="0"></use>
- <use xlink:href="#E1-MJMATHI-42" x="4070" y="0"></use>
- <use xlink:href="#E1-MJMATHI-6F" x="4829" y="0"></use>
- <use xlink:href="#E1-MJMATHI-6F" x="5315" y="0"></use>
- <use xlink:href="#E1-MJMATHI-6C" x="5800" y="0"></use>
-</g>
-</svg>:</p>
-<p><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="34.054ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 14662 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2208" d="M84 250Q84 372 166 450T360 539Q361 539 377 539T419 540T469 540H568Q583 532 583 520Q583 511 570 501L466 500Q355 499 329 494Q280 482 242 458T183 409T147 354T129 306T124 272V270H568Q583 262 583 250T568 230H124V228Q124 207 134 177T167 112T231 48T328 7Q355 1 466 0H570Q583 -10 583 -20Q583 -32 568 -40H471Q464 -40 446 -40T417 -41Q262 -41 172 45Q84 127 84 250Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3F" d="M226 668Q190 668 162 656T124 632L114 621Q116 621 119 620T130 616T145 607T157 591T162 567Q162 544 147 529T109 514T71 528T55 566Q55 625 100 661T199 704Q201 704 210 704T224 705H228Q281 705 320 692T378 656T407 612T416 567Q416 503 361 462Q267 395 247 303Q242 279 242 241V224Q242 205 239 202T222 198T205 201T202 218V249Q204 320 220 371T255 445T292 491T315 537Q317 546 317 574V587Q317 604 315 615T304 640T277 661T226 668ZM162 61Q162 89 180 105T224 121Q247 119 264 104T281 61Q281 31 264 16T222 1Q197 1 180 16T162 61Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-74" d="M27 422Q80 426 109 478T141 600V615H181V431H316V385H181V241Q182 116 182 100T189 68Q203 29 238 29Q282 29 292 100Q293 108 293 146V181H333V146V134Q333 57 291 17Q264 -10 221 -10Q187 -10 162 2T124 33T105 68T98 100Q97 107 97 248V385H18V422H27Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-72" d="M36 46H50Q89 46 97 60V68Q97 77 97 91T98 122T98 161T98 203Q98 234 98 269T98 328L97 351Q94 370 83 376T38 385H20V408Q20 431 22 431L32 432Q42 433 60 434T96 436Q112 437 131 438T160 441T171 442H174V373Q213 441 271 441H277Q322 441 343 419T364 373Q364 352 351 337T313 322Q288 322 276 338T263 372Q263 381 265 388T270 400T273 405Q271 407 250 401Q234 393 226 386Q179 341 179 207V154Q179 141 179 127T179 101T180 81T180 66V61Q181 59 183 57T188 54T193 51T200 49T207 48T216 47T225 47T235 46T245 46H276V0H267Q249 3 140 3Q37 3 28 0H20V46H36Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-75" d="M383 58Q327 -10 256 -10H249Q124 -10 105 89Q104 96 103 226Q102 335 102 348T96 369Q86 385 36 385H25V408Q25 431 27 431L38 432Q48 433 67 434T105 436Q122 437 142 438T172 441T184 442H187V261Q188 77 190 64Q193 49 204 40Q224 26 264 26Q290 26 311 35T343 58T363 90T375 120T379 144Q379 145 379 161T380 201T380 248V315Q380 361 370 372T320 385H302V431Q304 431 378 436T457 442H464V264Q464 84 465 81Q468 61 479 55T524 46H542V0Q540 0 467 -5T390 -11H383V58Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3A" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 84 95 102T138 120Q162 120 180 104T199 61Q199 36 182 18T139 0T96 17T78 60Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-66" d="M273 0Q255 3 146 3Q43 3 34 0H26V46H42Q70 46 91 49Q99 52 103 60Q104 62 104 224V385H33V431H104V497L105 564L107 574Q126 639 171 668T266 704Q267 704 275 704T289 705Q330 702 351 679T372 627Q372 604 358 590T321 576T284 590T270 627Q270 647 288 667H284Q280 668 273 668Q245 668 223 647T189 592Q183 572 182 497V431H293V385H185V225Q185 63 186 61T189 57T194 54T199 51T206 49T213 48T222 47T231 47T241 46T251 46H282V0H273Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-73" d="M295 316Q295 356 268 385T190 414Q154 414 128 401Q98 382 98 349Q97 344 98 336T114 312T157 287Q175 282 201 278T245 269T277 256Q294 248 310 236T342 195T359 133Q359 71 321 31T198 -10H190Q138 -10 94 26L86 19L77 10Q71 4 65 -1L54 -11H46H42Q39 -11 33 -5V74V132Q33 153 35 157T45 162H54Q66 162 70 158T75 146T82 119T101 77Q136 26 198 26Q295 26 295 104Q295 133 277 151Q257 175 194 187T111 210Q75 227 54 256T33 318Q33 357 50 384T93 424T143 442T187 447H198Q238 447 268 432L283 424L292 431Q302 440 314 448H322H326Q329 448 335 442V310L329 304H301Q295 310 295 316Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-3B" d="M78 370Q78 394 95 412T138 430Q162 430 180 414T199 371Q199 346 182 328T139 310T96 327T78 370ZM78 60Q78 85 94 103T137 121Q202 121 202 8Q202 -44 183 -94T144 -169T118 -194Q115 -194 106 -186T95 -174Q94 -171 107 -155T137 -107T160 -38Q161 -32 162 -22T165 -4T165 4Q165 5 161 4T142 0Q110 0 94 18T78 60Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
- <use xlink:href="#E1-MJMAIN-28" x="722" y="0"></use>
- <use xlink:href="#E1-MJMATHI-78" x="1112" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="1684" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="2129" y="0"></use>
- <use xlink:href="#E1-MJMAIN-29" x="2627" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3D" x="3294" y="0"></use>
- <use xlink:href="#E1-MJMAIN-28" x="4350" y="0"></use>
- <use xlink:href="#E1-MJMAIN-28" x="4740" y="0"></use>
- <use xlink:href="#E1-MJMATHI-78" x="5129" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="5702" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="6147" y="0"></use>
- <use xlink:href="#E1-MJMAIN-29" x="6644" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2208" x="7312" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3A9" x="8257" y="0"></use>
- <use xlink:href="#E1-MJMAIN-29" x="8979" y="0"></use>
- <use xlink:href="#E1-MJMAIN-3F" x="9369" y="0"></use>
-<g transform="translate(9841,0)">
- <use xlink:href="#E1-MJMAIN-74"></use>
- <use xlink:href="#E1-MJMAIN-72" x="389" y="0"></use>
- <use xlink:href="#E1-MJMAIN-75" x="782" y="0"></use>
- <use xlink:href="#E1-MJMAIN-65" x="1338" y="0"></use>
-</g>
- <use xlink:href="#E1-MJMAIN-3A" x="11902" y="0"></use>
-<g transform="translate(12458,0)">
- <use xlink:href="#E1-MJMAIN-66"></use>
- <use xlink:href="#E1-MJMAIN-61" x="306" y="0"></use>
- <use xlink:href="#E1-MJMAIN-6C" x="807" y="0"></use>
- <use xlink:href="#E1-MJMAIN-73" x="1085" y="0"></use>
- <use xlink:href="#E1-MJMAIN-65" x="1480" y="0"></use>
-</g>
- <use xlink:href="#E1-MJMAIN-3B" x="14383" y="0"></use>
-</g>
-</svg></p></p>
-<p>Example:</p>
-<p><p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="9.074ex" height="2.843ex" style="vertical-align: -0.838ex;" viewBox="0 -863.1 3906.9 1223.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-53" d="M308 24Q367 24 416 76T466 197Q466 260 414 284Q308 311 278 321T236 341Q176 383 176 462Q176 523 208 573T273 648Q302 673 343 688T407 704H418H425Q521 704 564 640Q565 640 577 653T603 682T623 704Q624 704 627 704T632 705Q645 705 645 698T617 577T585 459T569 456Q549 456 549 465Q549 471 550 475Q550 478 551 494T553 520Q553 554 544 579T526 616T501 641Q465 662 419 662Q362 662 313 616T263 510Q263 480 278 458T319 427Q323 425 389 408T456 390Q490 379 522 342T554 242Q554 216 546 186Q541 164 528 137T492 78T426 18T332 -20Q320 -22 298 -22Q199 -22 144 33L134 44L106 13Q83 -14 78 -18T65 -22Q52 -22 52 -14Q52 -11 110 221Q112 227 130 227H143Q149 221 149 216Q149 214 148 207T144 186T142 153Q144 114 160 87T203 47T255 29T308 24Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-78" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-2C" d="M78 35T78 60T94 103T137 121Q165 121 187 96T210 8Q210 -27 201 -60T180 -117T154 -158T130 -185T117 -194Q113 -194 104 -185T95 -172Q95 -168 106 -156T131 -126T157 -76T173 -3V9L172 8Q170 7 167 6T161 3T152 1T140 0Q113 0 96 17Z"></path>
-<path stroke-width="1" id="E1-MJMATHI-79" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path>
-<path stroke-width="1" id="E1-MJMAIN-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-2264" x="0" y="0"></use>
- <use transform="scale(0.707)" xlink:href="#E1-MJMATHI-53" x="1100" y="-219"></use>
- <use xlink:href="#E1-MJMAIN-28" x="1612" y="0"></use>
- <use xlink:href="#E1-MJMATHI-78" x="2002" y="0"></use>
- <use xlink:href="#E1-MJMAIN-2C" x="2574" y="0"></use>
- <use xlink:href="#E1-MJMATHI-79" x="3019" y="0"></use>
- <use xlink:href="#E1-MJMAIN-29" x="3517" y="0"></use>
-</g>
-</svg></p></p>
-</section>
-<section id="order-1" class="level2">
-<h2>Order</h2>
-<p><svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1.678ex" height="2.176ex" style="vertical-align: -0.338ex;" viewBox="0 -791.3 722.5 936.9" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<path stroke-width="1" id="E1-MJMAIN-3A9" d="M55 454Q55 503 75 546T127 617T197 665T272 695T337 704H352Q396 704 404 703Q527 687 596 615T666 454Q666 392 635 330T559 200T499 83V80H543Q589 81 600 83T617 93Q622 102 629 135T636 172L637 177H677V175L660 89Q645 3 644 2V0H552H488Q461 0 456 3T451 20Q451 89 499 235T548 455Q548 512 530 555T483 622T424 656T361 668Q332 668 303 658T243 626T193 560T174 456Q174 380 222 233T270 20Q270 7 263 0H77V2Q76 3 61 89L44 175V177H84L85 172Q85 171 88 155T96 119T104 93Q109 86 120 84T178 80H222V83Q206 132 162 199T87 329T55 454Z"></path>
-</defs>
-<g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)">
- <use xlink:href="#E1-MJMAIN-3A9" x="0" y="0"></use>
-</g>
-</svg> is an <dfn>order</dfn> iff it is <em>antireflexive</em>, <em>asymmetric</em> and
-<em>transitive</em>.</p>
-</section>
-<section id="quiz-1" class="level2">
-<h2>Quiz #1</h2>
-<p>Reflexive, Antireflexive, Symmetric, Asymmetric, Transitive, Equivalence, Order</p>
-<p>Which is this:</p>
-<p><?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Generated by graphviz version 2.40.1 (0)
- -->
-<!-- Title: G Pages: 1 -->
-<svg width="116pt" height="188pt"
- viewBox="0.00 0.00 116.00 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)">
-<title>G</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-184 112,-184 112,4 -4,4"/>
-<!-- x -->
-<g id="node1" class="node">
-<title>x</title>
-<ellipse fill="none" stroke="#000000" cx="63" cy="-162" rx="27" ry="18"/>
-<text text-anchor="middle" x="63" y="-158.3" font-family="Times,serif" font-size="14.00" fill="#000000">x</text>
-</g>
-<!-- x&#45;&gt;x -->
-<g id="edge1" class="edge">
-<title>x&#45;&gt;x</title>
-<path fill="none" stroke="#000000" d="M82.895,-174.4321C95.688,-177.6753 108,-173.5313 108,-162 108,-153.6218 101.5006,-149.1433 93.0395,-148.5644"/>
-<polygon fill="#000000" stroke="#000000" points="92.5019,-145.1004 82.895,-149.5679 93.191,-152.0665 92.5019,-145.1004"/>
-</g>
-<!-- y -->
-<g id="node2" class="node">
-<title>y</title>
-<ellipse fill="none" stroke="#000000" cx="27" cy="-90" rx="27" ry="18"/>
-<text text-anchor="middle" x="27" y="-86.3" font-family="Times,serif" font-size="14.00" fill="#000000">y</text>
-</g>
-<!-- x&#45;&gt;y -->
-<g id="edge3" class="edge">
-<title>x&#45;&gt;y</title>
-<path fill="none" stroke="#000000" d="M54.2854,-144.5708C50.0403,-136.0807 44.8464,-125.6929 40.1337,-116.2674"/>
-<polygon fill="#000000" stroke="#000000" points="43.237,-114.6477 35.6343,-107.2687 36.976,-117.7782 43.237,-114.6477"/>
-</g>
-<!-- y&#45;&gt;y -->
-<g id="edge2" class="edge">
-<title>y&#45;&gt;y</title>
-<path fill="none" stroke="#000000" d="M46.895,-102.4321C59.688,-105.6753 72,-101.5313 72,-90 72,-81.6218 65.5006,-77.1433 57.0395,-76.5644"/>
-<polygon fill="#000000" stroke="#000000" points="56.5019,-73.1004 46.895,-77.5679 57.191,-80.0665 56.5019,-73.1004"/>
-</g>
-<!-- z -->
-<g id="node3" class="node">
-<title>z</title>
-<ellipse fill="none" stroke="#000000" cx="63" cy="-18" rx="27" ry="18"/>
-<text text-anchor="middle" x="63" y="-14.3" font-family="Times,serif" font-size="14.00" fill="#000000">z</text>
-</g>
-<!-- y&#45;&gt;z -->
-<g id="edge4" class="edge">
-<title>y&#45;&gt;z</title>
-<path fill="none" stroke="#000000" d="M35.7146,-72.5708C39.9597,-64.0807 45.1536,-53.6929 49.8663,-44.2674"/>
-<polygon fill="#000000" stroke="#000000" points="53.024,-45.7782 54.3657,-35.2687 46.763,-42.6477 53.024,-45.7782"/>
-</g>
-<!-- z&#45;&gt;x -->
-<g id="edge5" class="edge">
-<title>z&#45;&gt;x</title>
-<path fill="none" stroke="#000000" d="M70.4804,-35.6357C74.4738,-46.0142 78.9738,-59.5142 81,-72 83.5629,-87.7934 83.5629,-92.2066 81,-108 79.5437,-116.9742 76.8094,-126.4723 73.9038,-134.9587"/>
-<polygon fill="#000000" stroke="#000000" points="70.6117,-133.7703 70.4804,-144.3643 77.1896,-136.1645 70.6117,-133.7703"/>
-</g>
-</g>
-</svg>
-</p>
-<!-- TODO quizzes. -->
-</section>
-</section>
-<section id="shoutouts" class="level1">
-<h1>Shoutouts</h1>
-<ul>
-<li>Editors of cppreference.org. You guys make everyone’s lives so much easier!</li>
-<li>Herb Sutter, Jens Maurer, Walter E. Brown, Barry Revzin, Jeff Snyder, David
-Stone for working on getting ordering correct in the language.</li>
-</ul>
-<p>–&gt;</p>
-</section>
-<section id="partial-orders-and-lattices" class="level1">
-<h1>Partial Orders and Lattices</h1>
-</section>
-<section id="bibliography" class="level1">
-<h1>Bibliography:</h1>
-<ul>
-<li><p>order switching: https://htmlpreview.github.io/?https://github.com/BRevzin/cpp_proposals/blob/master/118x_spaceship/d1630r0.html</p></li>
-<li></li>
-</ul>
-<!-- end floating point -->
-<!--
-TODO:
-- partial orders - which algorithms are they used in
-- key functions are exactly what defines weak orders
-
-- suggestion: cmp_proxy protocol?
-- `==` is the finest equivalence that makes sense for a type, and *possibly* <=>
-  is then the finest ordering that makes sense for a type (since it is strong).
-  - types that just have a partial ordering *should* implement the
-    `partial_order` customization point, and not <=>
-- usefulness: < is a global relation that's usually O(input), not O(set) - that
-  is exactly what makes it such an amazing optimization tool.
-
-philosophy:
-
-- what about orders that are "stronger than strong"
-- an ordering induces equivalence classes
-- every type that has a strong ordering has at least two - the opposite way as
-  well.
-- strong_ordering is a signal that == induces the same equivalence classes
-- an ordering finer than strong_ordering is still a weak_ordering!
-- interplay with std::hash?
-
-- How would I use an ordering derived from std::strong_order in map?
- 
-
-maybe:
-- lattices?
-  - lattices have intervals
-- ordering for pointers.
-
-next pass:
-- order the slides so they make sense
-
-finalizing:
-- doublecheck is_eq name in complex
-- figure out how to do picture-on-the-side of the slide
-
-
--->
-<!--
-Topics:
-
-- Goals for today
-    - What is equality
-    - What is equivalence
-
-- Equality and Equivalence:
-    - Math:
-        - Equality: an equivalence relation that tells elements of a set apart.
-        - Equivalence: a reflexive, symmetric and transitive relation.
-    - Language:
-        - Defaulting
-        - Rewriting Rules
-
-
-
-
-
-
-
-
-
--->
+<p>Have fun and optimize!</p>
 </section>
 
         </div>
